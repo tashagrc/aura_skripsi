@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SelectOccasionView: View {
     var body: some View {
-        
         NavigationStack {
             VStack(spacing: 20) {
                 Text("Where do you want to go?")
@@ -26,8 +25,6 @@ struct SelectOccasionView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("Occasion")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

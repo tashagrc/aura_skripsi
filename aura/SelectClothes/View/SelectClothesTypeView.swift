@@ -25,24 +25,12 @@ struct SelectClothesTypeView: View {
             
             Spacer()
             
-            NavigationLink(destination: SelectClothesItemView()) {
-                Text("Continue")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-                    .padding(.top, 20)
-            }
+            ButtonViewComponent(title: "Continue", destination: SelectClothesItemView(), isPrimary: true)
             
             
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(50)
-        .navigationTitle("Clothes Type")
-        .navigationBarTitleDisplayMode(.inline)
     }
         
 }
