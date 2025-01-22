@@ -20,7 +20,7 @@ struct SelectOccasionView: View {
                 Spacer().frame(height: 20)
                 
                 ForEach(buttonData, id: \.title) { button in
-                    OccasionSelectorViewComponent(icon: button.icon, title: button.title, destination: SelectClothesTypeView())
+                    SelectorViewComponent(icon: button.icon, title: button.title, destination: SelectClothesTypeView())
                 }
                 Spacer()
             }

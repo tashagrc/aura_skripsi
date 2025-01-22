@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OccasionSelectorViewComponent<Destination: View>: View {
+struct SelectorViewComponent<Destination: View>: View {
     let icon: String
     let title: String
     let destination: Destination

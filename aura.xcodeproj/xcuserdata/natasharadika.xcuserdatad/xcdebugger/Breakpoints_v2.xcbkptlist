@@ -18,36 +18,6 @@
             endingLineNumber = "11"
             landmarkName = "ClothesSummaryView"
             landmarkType = "14">
-            <Locations>
-               <Location
-                  uuid = "BD6B0A2B-63E4-4321-B518-A8B6D40B1711 - 7fceaffd4ec2236c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "default argument 0 of aura.ClothesSummaryView.init(cardData: Swift.Array&lt;(title: Swift.String, description: Swift.String)&gt;) -&gt; aura.ClothesSummaryView"
-                  moduleName = "aura.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/natasharadika/Documents/Skripsi/aura/aura/SelectClothes/View/ClothesSummaryView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0">
-               </Location>
-               <Location
-                  uuid = "BD6B0A2B-63E4-4321-B518-A8B6D40B1711 - 3142cda0ce09f76c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "aura.ClothesSummaryView.init() -&gt; aura.ClothesSummaryView"
-                  moduleName = "aura.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/natasharadika/Documents/Skripsi/aura/aura/SelectClothes/View/ClothesSummaryView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
