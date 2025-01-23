@@ -25,7 +25,7 @@ struct FindClothesView: View {
                     .frame(width: 80, height: 80)
                     .foregroundColor(.primary)
                 
-                Text("Scan each of your clothes with your phone until you hear a beeping sound")
+                Text("Scan each Aura Tag on your clothes with your phone until you hear a beep")
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -36,7 +36,7 @@ struct FindClothesView: View {
             ScrollView {
                 VStack(spacing: 10) {
                     ForEach(cardData, id: \.title) { card in
-                        FindCardViewComponent(clothesName: card.title, status: card.status)
+                        FindCardViewComponent(itemName: card.title, status: card.status)
                             .frame(maxWidth: .infinity)
                     }
                 }

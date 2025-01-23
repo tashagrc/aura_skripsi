@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ClothesDetailView: View {
+    var isNext: Bool = false
+    
     let data = [
         ("Type", "T-shirt"),
         ("Category", "Top"),
@@ -49,7 +51,13 @@ struct ClothesDetailView: View {
             .padding()
             
             Spacer()
+            
+            if isNext {
+                ButtonViewComponent(title: "Continue", destination: RegisterRFIDTagView(), isPrimary: true)
+            }
+            
         }
+        .padding()
         
     }
 }

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct FindCardViewComponent: View {
-    var clothesName: String
+    var itemName: String
     var status: Bool
     var body: some View {
         HStack(alignment: .top, spacing: 10) {
-            Text(clothesName)
+            Text(itemName)
                 .font(.body)
                 .multilineTextAlignment(.leading)
                 .foregroundColor(.primary)
