@@ -31,6 +31,7 @@ struct SelectOccasionView: View {
             }
             .padding()
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

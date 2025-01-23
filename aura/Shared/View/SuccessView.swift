@@ -11,6 +11,7 @@ struct SuccessView: View {
     var iconName: String
     var title: String
     var subtitle: String
+    var returnTab: Int
     
     var body: some View {
 
@@ -36,9 +37,16 @@ struct SuccessView: View {
             
             Spacer()
             
-            NavigationLink(destination: SelectOccasionView()) {
-                ButtonViewComponent(title: "Done", isPrimary: true)
+            if returnTab == 0 {
+                NavigationLink(destination: SelectOccasionView()) {
+                    ButtonViewComponent(title: "Done", isPrimary: true)
+                }
+            } else {
+                NavigationLink(destination: ManageClothesMenuView()) {
+                    ButtonViewComponent(title: "Done", isPrimary: true)
+                }
             }
+            
         
         }
         .padding()

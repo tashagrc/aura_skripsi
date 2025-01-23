@@ -27,7 +27,7 @@ struct RegisterRFIDTagView: View {
             FindCardViewComponent(itemName: "Aura Tag", status: false)
             Spacer()
             
-            NavigationLink(destination: SuccessView(iconName: "paperclip", title: "Attach the registered Aura tag to the clothes you took photos of earlier", subtitle: "Use sewing, adhesive, or a clip to securely attatch the tag.")) {
+            NavigationLink(destination: SuccessView(iconName: "paperclip", title: "Attach the registered Aura tag to the clothes you took photos of earlier", subtitle: "Use sewing, adhesive, or a clip to securely attatch the tag.", returnTab: 1)) {
                 ButtonViewComponent(title: "Continue", isPrimary: true)
             }
             

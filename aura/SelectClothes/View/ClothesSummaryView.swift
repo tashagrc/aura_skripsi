@@ -45,7 +45,7 @@ struct ClothesSummaryView: View {
                     ButtonViewComponent(title: "Help me find clothes", isPrimary: true)
                 }
                 
-                NavigationLink(destination: SuccessView(iconName: "checkmark.circle", title: "Amazing choice!", subtitle: "Pick up all of your selected clothes")) {
+                NavigationLink(destination: SuccessView(iconName: "checkmark.circle", title: "Amazing choice!", subtitle: "Pick up all of your selected clothes", returnTab: 0)) {
                     ButtonViewComponent(title: "I can do it by myself", isPrimary: false)
                 }
                 

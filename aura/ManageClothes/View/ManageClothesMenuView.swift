@@ -31,7 +31,7 @@ struct ManageClothesMenuView: View {
             }
             .padding()
         }
-        
+        .navigationBarBackButtonHidden(true)
     }
 }
 
