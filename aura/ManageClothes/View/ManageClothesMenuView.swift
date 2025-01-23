@@ -10,10 +10,10 @@ import SwiftUI
 struct ManageClothesMenuView: View {
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading, spacing: 20) {
-                Text("Where do you want to go?")
+            VStack(alignment: .center, spacing: 20) {
+                Text("Manage your clothes")
                     .font(.title)
-                    .multilineTextAlignment(.leading)
+                    .multilineTextAlignment(.center)
                     .fontWeight(.bold)
                     .padding(.top, 40)
                 

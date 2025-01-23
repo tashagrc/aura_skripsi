@@ -27,7 +27,6 @@ struct ButtonViewComponent<Destination: View>: View {
                         .stroke(isPrimary ? Color.clear : Color.blue, lineWidth: 2)
                 )
         }
-        .padding(.top, 20)
     }
 }
 
