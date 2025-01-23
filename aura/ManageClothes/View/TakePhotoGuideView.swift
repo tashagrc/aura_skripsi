@@ -22,8 +22,13 @@ struct TakePhotoGuideView: View {
             
             Spacer()
             
-            ButtonViewComponent(title: "Take Photo", destination: ClothesDetailView(isNext: true), isPrimary: true)
-            ButtonViewComponent(title: "Fill in Manually", destination: ClothesDetailView(isNext: true), isPrimary: false)
+            NavigationLink(destination: ClothesDetailView(isNext: true)) {
+                ButtonViewComponent(title: "Take Photo", isPrimary: true)
+            }
+            
+            NavigationLink(destination: ClothesDetailView(isNext: true)) {
+                ButtonViewComponent(title: "Fill in Manually", isPrimary: false)
+            }
         }
         .padding()
     }

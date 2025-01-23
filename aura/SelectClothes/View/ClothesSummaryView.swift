@@ -41,8 +41,14 @@ struct ClothesSummaryView: View {
             }
             
             VStack(alignment: .leading) {
-                ButtonViewComponent(title: "Help me find clothes", destination: FindClothesView(), isPrimary: true)
-                ButtonViewComponent(title: "I can do it by myself", destination: SuccessView(iconName: "checkmark.circle", title: "Amazing choice!", subtitle: "Pick up all of your selected clothes"), isPrimary: false)
+                NavigationLink(destination: FindClothesView()) {
+                    ButtonViewComponent(title: "Help me find clothes", isPrimary: true)
+                }
+                
+                NavigationLink(destination: SuccessView(iconName: "checkmark.circle", title: "Amazing choice!", subtitle: "Pick up all of your selected clothes", returnTab: 0)) {
+                    ButtonViewComponent(title: "I can do it by myself", isPrimary: false)
+                }
+                
             }
             
             

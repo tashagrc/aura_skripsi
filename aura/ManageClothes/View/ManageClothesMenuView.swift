@@ -19,13 +19,19 @@ struct ManageClothesMenuView: View {
                 
                 Spacer().frame(height: 20)
                 
-                SelectorViewComponent(icon: "plus.app", title: "Add new clothes", destination: TakePhotoGuideView())
-                SelectorViewComponent(icon: "tshirt", title: "View/edit all clothes", destination: ClothesListView())
+                NavigationLink(destination: TakePhotoGuideView()) {
+                    SelectorViewComponent(icon: "plus.app", title: "Add new clothes")
+                }
+                
+                NavigationLink(destination: ClothesListView()) {
+                    SelectorViewComponent(icon: "tshirt", title: "View/edit all clothes")
+                }
+                
                 Spacer()
             }
             .padding()
         }
-        
+        .navigationBarBackButtonHidden(true)
     }
 }
 

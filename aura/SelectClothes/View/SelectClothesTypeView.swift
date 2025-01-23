@@ -25,9 +25,9 @@ struct SelectClothesTypeView: View {
             
             Spacer()
             
-            ButtonViewComponent(title: "Continue", destination: SelectClothesItemView(), isPrimary: true)
-            
-            
+            NavigationLink(destination: SelectClothesItemView()) {
+                ButtonViewComponent(title: "Continue", isPrimary: true)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(50)
