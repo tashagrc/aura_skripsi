@@ -36,8 +36,9 @@ struct SuccessView: View {
             
             Spacer()
             
-            ButtonViewComponent(title: "Done", destination: SelectOccasionView(), isPrimary: true)
-            
+            NavigationLink(destination: SelectOccasionView()) {
+                ButtonViewComponent(title: "Done", isPrimary: true)
+            }
         
         }
         .padding()

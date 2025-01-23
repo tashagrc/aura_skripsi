@@ -53,7 +53,10 @@ struct ClothesDetailView: View {
             Spacer()
             
             if isNext {
-                ButtonViewComponent(title: "Continue", destination: RegisterRFIDTagView(), isPrimary: true)
+                NavigationLink(destination: RegisterRFIDTagView()) {
+                    ButtonViewComponent(title: "Continue", isPrimary: true)
+                }
+                
             }
             
         }

@@ -44,7 +44,10 @@ struct FindClothesView: View {
                 
             }
             
-            ButtonViewComponent(title: "Continue", destination: SuccessView(iconName: "checkmark.circle", title: "Amazing choice!", subtitle: "Pick up all of your selected clothes"), isPrimary: true)
+            NavigationLink(destination: SuccessView(iconName: "checkmark.circle", title: "Amazing choice!", subtitle: "Pick up all of your selected clothes")) {
+                ButtonViewComponent(title: "Continue", isPrimary: true)
+            }
+            
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(20)

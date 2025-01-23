@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SelectOccasionView: View {
+    @State private var path = [Int]()
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -20,7 +22,10 @@ struct SelectOccasionView: View {
                 Spacer().frame(height: 20)
                 
                 ForEach(buttonData, id: \.title) { button in
-                    SelectorViewComponent(icon: button.icon, title: button.title, destination: SelectClothesTypeView())
+                    NavigationLink(destination: SelectClothesTypeView()) {
+                        SelectorViewComponent(icon: button.icon, title: button.title)
+                    }
+                    
                 }
                 Spacer()
             }
