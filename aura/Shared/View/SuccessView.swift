@@ -36,6 +36,7 @@ struct SuccessView: View {
             
             Spacer()
             
+            ButtonViewComponent(title: "Done", destination: SelectOccasionView(), isPrimary: true)
             
         
         }
@@ -44,5 +45,6 @@ struct SuccessView: View {
 
         
     }
+        
 }
 
