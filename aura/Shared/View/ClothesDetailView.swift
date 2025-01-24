@@ -15,40 +15,47 @@ struct ClothesDetailView: View {
         ("Category", "Top"),
         ("Color", "Yellow"),
         ("Pattern", "Polka dot"),
-        ("Occasion", "Casual"),
-        ("Description", "test")
+        ("Occasion", "Casual")
     ]
     
     let columns = [
         GridItem(.fixed(100), alignment: .leading),
-        GridItem(.flexible(), alignment: .leading),
         GridItem(.fixed(100), alignment: .leading),
     ]
     
+    @State private var selection = "T-Shirt"
+    let colors = ["T-Shirt", "Green", "Blue", "Black", "Tartan"]
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .center, spacing: 20) {
+            Image("clothes_sample")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 200)
+                .cornerRadius(12)
+                .padding(.horizontal, 20)
+                
+            
             Text("Red T-shirt")
                 .font(.title)
-                .multilineTextAlignment(.leading)
                 .fontWeight(.bold)
-                .padding(.top, 40)
                 .padding(.horizontal, 20)
-            
-            Spacer().frame(height: 20)
             
             LazyVGrid(columns: columns, spacing: 10) {
                 ForEach(data, id: \.0) { key, value in
                     Text(key)
                         .font(.headline)
                         .fontWeight(.semibold)
-                    Text(value)
-                        .font(.body)
-                    
-                    Text("Edit")
-                        .font(.body)
+                    Picker("Select a paint color", selection: $selection) {
+                        ForEach(colors, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    .pickerStyle(.menu)
                 }
             }
-            .padding()
+            .padding(.horizontal, 20)
+           
             
             Spacer()
             
@@ -60,7 +67,7 @@ struct ClothesDetailView: View {
             }
             
         }
-        .padding()
+        .padding(.top, 40)
         
     }
 }

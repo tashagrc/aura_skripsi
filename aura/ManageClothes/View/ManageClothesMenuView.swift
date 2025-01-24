@@ -19,7 +19,7 @@ struct ManageClothesMenuView: View {
                 
                 Spacer().frame(height: 20)
                 
-                NavigationLink(destination: TakePhotoGuideView()) {
+                NavigationLink(destination: InsertClothesGuideView()) {
                     SelectorViewComponent(icon: "plus.app", title: "Add new clothes")
                 }
                 
