@@ -31,7 +31,7 @@ struct SelectClothesItemView: View {
                 VStack(spacing: 10) {
                     ForEach(cardData, id: \.title) { card in
                         NavigationLink(destination: ClothesSummaryView()) {
-                            ClothesCardViewComponent(title: card.title, description: card.description)
+                            ClothesCardViewComponent(title: card.title, description: card.description, imageName: "clothes_sample")
                                 .frame(maxWidth: .infinity)
                         }
                     }
