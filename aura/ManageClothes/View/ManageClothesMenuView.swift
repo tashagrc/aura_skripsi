@@ -10,14 +10,12 @@ import SwiftUI
 struct ManageClothesMenuView: View {
     var body: some View {
         NavigationStack {
-            VStack(alignment: .center, spacing: 20) {
+            VStack(spacing: 24) {
                 Text("Manage your clothes")
                     .font(.title)
                     .multilineTextAlignment(.center)
                     .fontWeight(.bold)
                     .padding(.top, 40)
-                
-                Spacer().frame(height: 20)
                 
                 NavigationLink(destination: InsertClothesGuideView()) {
                     SelectorViewComponent(icon: "plus.app", title: "Add new clothes")
@@ -29,7 +27,7 @@ struct ManageClothesMenuView: View {
                 
                 Spacer()
             }
-            .padding()
+            .padding(.horizontal, 16)
         }
         .navigationBarBackButtonHidden(true)
     }

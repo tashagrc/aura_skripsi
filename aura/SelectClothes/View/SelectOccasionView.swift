@@ -12,14 +12,12 @@ struct SelectOccasionView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
+            VStack(spacing: 24) {
                 Text("Where do you want to go?")
                     .font(.title)
-                    .multilineTextAlignment(.leading)
+                    .multilineTextAlignment(.center)
                     .fontWeight(.bold)
                     .padding(.top, 40)
-                
-                Spacer().frame(height: 20)
                 
                 ForEach(buttonData, id: \.title) { button in
                     NavigationLink(destination: SelectClothesTypeView()) {
@@ -29,7 +27,7 @@ struct SelectOccasionView: View {
                 }
                 Spacer()
             }
-            .padding()
+            .padding(.horizontal, 16)
         }
         .navigationBarBackButtonHidden(true)
     }
