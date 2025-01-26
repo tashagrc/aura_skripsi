@@ -15,31 +15,29 @@ struct ClothesListView: View {
     ]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 24) {
             Text("My Clothes")
                 .font(.title)
                 .multilineTextAlignment(.leading)
                 .fontWeight(.bold)
                 .padding(.top, 40)
-            
-            Spacer().frame(height: 20)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             ScrollView {
-                VStack(spacing: 10) {
+                VStack(spacing: 16) {
                     ForEach(cardData, id: \.title) { card in
                         NavigationLink(destination: ClothesDetailView()) {
                             ClothesCardViewComponent(title: card.title, description: card.description, imageName: "clothes_sample")
-                                .frame(maxWidth: .infinity)
+            
                         }
                     }
                 }
-                .padding()
+                .padding(.top, 16)
                 
             }
             Spacer()
         }
-        .padding()
-        
+        .padding(.horizontal, 16)
     }
 }
 

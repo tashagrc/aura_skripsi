@@ -10,26 +10,33 @@ import SwiftUI
 struct FindCardViewComponent: View {
     var itemName: String
     var status: Bool
+    
     var body: some View {
-        HStack(alignment: .top, spacing: 10) {
+        HStack(alignment: .center, spacing: 12) {
             Text(itemName)
-                .font(.body)
-                .multilineTextAlignment(.leading)
+                .font(.headline)
                 .foregroundColor(.primary)
-            Spacer()
+                .lineLimit(2)
+                .frame(maxWidth: .infinity, alignment: .leading)
             Text(status ? "Found" : "Not Found")
-                .font(.body)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.leading)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .padding(.vertical, 4)
+                .padding(.horizontal, 8)
+                .background(status ? Color.green.opacity(0.2) : Color.red.opacity(0.2))
                 .foregroundColor(status ? Color.green : Color.red)
+                .cornerRadius(8)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.gray, lineWidth: 1)
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.gray.opacity(0.1))
         )
-        .padding(.horizontal)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+        )
     }
 }
 

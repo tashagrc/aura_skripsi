@@ -13,9 +13,10 @@ struct ManageClothesMenuView: View {
             VStack(spacing: 24) {
                 Text("Manage your clothes")
                     .font(.title)
-                    .multilineTextAlignment(.center)
+                    .multilineTextAlignment(.leading)
                     .fontWeight(.bold)
                     .padding(.top, 40)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 NavigationLink(destination: InsertClothesGuideView()) {
                     SelectorViewComponent(icon: "plus.app", title: "Add new clothes")

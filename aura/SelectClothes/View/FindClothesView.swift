@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct FindClothesView: View {
-    
     var cardData = [
         (title: "Card 1", status: true),
         (title: "Card 2", status: false)
@@ -16,9 +15,9 @@ struct FindClothesView: View {
     ]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 24) {
             
-            VStack(alignment: .center) {
+            VStack(alignment: .center, spacing: 16) {
                 Image(systemName: "tag")
                     .resizable()
                     .scaledToFit()
@@ -28,19 +27,19 @@ struct FindClothesView: View {
                 Text("Scan each Aura Tag on your clothes with your phone until you hear a beep")
                     .font(.body)
                     .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 20)
+                    .multilineTextAlignment(.leading)
             }
+            .padding(.top, 40)
             
             
             ScrollView {
-                VStack(spacing: 10) {
+                VStack(spacing: 16) {
                     ForEach(cardData, id: \.title) { card in
                         FindCardViewComponent(itemName: card.title, status: card.status)
-                            .frame(maxWidth: .infinity)
                     }
                 }
-                .padding()
+                .padding(.top, 16)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 
             }
             
@@ -49,8 +48,7 @@ struct FindClothesView: View {
             }
             
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(20)
+        .padding(.horizontal, 16)
     }
 }
 

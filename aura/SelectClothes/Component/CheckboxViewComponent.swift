@@ -21,6 +21,10 @@ struct CheckboxViewComponent: View {
                 Text(label)
                     .font(.body)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+            .background(Color.blue.opacity(isChecked ? 0.1 : 0.05))
+            .cornerRadius(8)
         }
         .buttonStyle(PlainButtonStyle())
     }

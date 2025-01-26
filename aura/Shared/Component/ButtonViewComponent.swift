@@ -16,13 +16,17 @@ struct ButtonViewComponent: View {
             .font(.title2)
             .fontWeight(.semibold)
             .foregroundColor(isPrimary ? .white : .blue)
-            .padding()
+            .padding(.vertical, 14)
             .frame(maxWidth: .infinity)
             .background(isPrimary ? Color.blue : Color.clear)
-            .cornerRadius(10)
+            .cornerRadius(12)
             .overlay(
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: 12)
                     .stroke(isPrimary ? Color.clear : Color.blue, lineWidth: 2)
+            )
+            .shadow(
+                color: isPrimary ? Color.blue.opacity(0.2) : Color.clear,
+                radius: 4, x: 0, y: 2
             )
     }
 }

@@ -11,18 +11,19 @@ struct RegisterRFIDTagView: View {
     var isFound: Bool = false
     
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 24) {
             Text("Set up your Aura tag")
                 .font(.title)
                 .multilineTextAlignment(.leading)
                 .fontWeight(.bold)
                 .padding(.top, 40)
-            Spacer()
+                .frame(maxWidth: .infinity, alignment: .leading)
             Text("Place the Aura tag on the back of your phone until you hear a beep. Ensure NFC is enabled in your phone settings.")
                 .font(.body)
                 .multilineTextAlignment(.leading)
-                .padding(.top, 40)
+                .padding(.top, 16)
             
+            Spacer().frame(height: 24)
             
             FindCardViewComponent(itemName: "Aura Tag", status: false)
             Spacer()
@@ -32,7 +33,7 @@ struct RegisterRFIDTagView: View {
             }
             
         }
-        .padding()
+        .padding(.horizontal, 16)
     }
 }
 

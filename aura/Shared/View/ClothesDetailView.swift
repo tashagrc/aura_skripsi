@@ -19,29 +19,29 @@ struct ClothesDetailView: View {
     ]
     
     let columns = [
-        GridItem(.fixed(100), alignment: .leading),
-        GridItem(.fixed(100), alignment: .leading),
+        GridItem(.fixed(120), alignment: .leading),
+        GridItem(.flexible(), alignment: .leading),
     ]
     
     @State private var selection = "T-Shirt"
     let colors = ["T-Shirt", "Green", "Blue", "Black", "Tartan"]
     
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
+        VStack(spacing: 24) {
             Image("clothes_sample")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 200)
                 .cornerRadius(12)
-                .padding(.horizontal, 20)
                 
             
             Text("Red T-shirt")
                 .font(.title)
                 .fontWeight(.bold)
-                .padding(.horizontal, 20)
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
-            LazyVGrid(columns: columns, spacing: 10) {
+            LazyVGrid(columns: columns, spacing: 12) {
                 ForEach(data, id: \.0) { key, value in
                     Text(key)
                         .font(.headline)
@@ -51,10 +51,10 @@ struct ClothesDetailView: View {
                             Text($0)
                         }
                     }
-                    .pickerStyle(.menu)
+                    .pickerStyle(MenuPickerStyle())
                 }
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 16)
            
             
             Spacer()
@@ -67,7 +67,7 @@ struct ClothesDetailView: View {
             }
             
         }
-        .padding(.top, 40)
+        .padding(.horizontal, 16)
         
     }
 }

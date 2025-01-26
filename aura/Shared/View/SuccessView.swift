@@ -15,45 +15,41 @@ struct SuccessView: View {
     
     var body: some View {
 
-        VStack(spacing: 20) {
-            
-            
+        VStack(spacing: 32) {
             Image(systemName: iconName)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 80, height: 80)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
+                .padding(.top, 40)
             
             Text(title)
                 .font(.title)
                 .fontWeight(.bold)
-                .multilineTextAlignment(.center)
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             Text(subtitle)
                 .font(.body)
                 .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 20)
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             Spacer()
             
-            if returnTab == 0 {
-                NavigationLink(destination: SelectOccasionView()) {
-                    ButtonViewComponent(title: "Done", isPrimary: true)
-                }
-            } else {
-                NavigationLink(destination: ManageClothesMenuView()) {
-                    ButtonViewComponent(title: "Done", isPrimary: true)
-                }
+            NavigationLink(
+                destination: returnTab == 0 ? AnyView(SelectOccasionView()) : AnyView(ManageClothesMenuView())
+            ) {
+                ButtonViewComponent(title: "Done", isPrimary: true)
             }
+            
             
         
         }
-        .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .padding(.horizontal, 16)
+        .frame(maxWidth: .infinity, alignment: .leading)
 
         
     }
         
 }
-

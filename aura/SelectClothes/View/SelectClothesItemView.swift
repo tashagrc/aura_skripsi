@@ -16,19 +16,22 @@ struct SelectClothesItemView: View {
     ]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(spacing: 24) {
             
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text("Select a clothes")
                     .font(.title)
                     .fontWeight(.bold)
+                    .multilineTextAlignment(.leading)
                 Text("Show clothes that match with XX")
                     .font(.title3)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
             }
-            .padding(.horizontal, 20)
+            .frame(maxWidth: .infinity, alignment: .leading)
             
             ScrollView {
-                VStack(spacing: 10) {
+                VStack(spacing: 16) {
                     ForEach(cardData, id: \.title) { card in
                         NavigationLink(destination: ClothesSummaryView()) {
                             ClothesCardViewComponent(title: card.title, description: card.description, imageName: "clothes_sample")
@@ -36,14 +39,14 @@ struct SelectClothesItemView: View {
                         }
                     }
                 }
-                .padding()
+                .padding(.top, 16)
                 
             }
             
             
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(20)
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 16)
     }
 }
 

@@ -15,16 +15,20 @@ struct SelectOccasionView: View {
             VStack(spacing: 24) {
                 Text("Where do you want to go?")
                     .font(.title)
-                    .multilineTextAlignment(.center)
+                    .multilineTextAlignment(.leading)
                     .fontWeight(.bold)
                     .padding(.top, 40)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-                ForEach(buttonData, id: \.title) { button in
-                    NavigationLink(destination: SelectClothesTypeView()) {
-                        SelectorViewComponent(icon: button.icon, title: button.title)
+                VStack(spacing: 16) {
+                    ForEach(buttonData, id: \.title) { button in
+                        NavigationLink(destination: SelectClothesTypeView()) {
+                            SelectorViewComponent(icon: button.icon, title: button.title)
+                        }
+                        
                     }
-                    
                 }
+                
                 Spacer()
             }
             .padding(.horizontal, 16)

@@ -13,24 +13,23 @@ struct ClothesCardViewComponent: View {
     var imageName: String
     
     var body: some View {
-        HStack(alignment: .top, spacing: 15) {
+        HStack(alignment: .top, spacing: 12) {
             Image(imageName)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 50, height: 50)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
             
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(title)
                     .font(.headline)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 Text(description)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             
         }
         .padding(12)

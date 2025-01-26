@@ -13,26 +13,30 @@ struct SummaryCardViewComponent: View {
     var text: String
     
     var body: some View {
-        HStack(alignment: .top, spacing: 10) {
+        HStack(alignment: .top, spacing: 12) {
             Image(systemName: iconName)
                 .font(.title)
                 .foregroundColor(.blue)
-                .frame(width: 40, height: 40)
-                .background(Color.blue.opacity(0.1))
-                .cornerRadius(8)
+                .frame(width: 50, height: 50)
+                .background(Color.blue.opacity(0.15))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
             
             Text(text)
                 .font(.body)
-                .multilineTextAlignment(.leading)
                 .foregroundColor(.primary)
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(12)
         .background(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.gray, lineWidth: 1)
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.white)
+                .shadow(color: Color.black.opacity(0.05), radius: 4, x: 0, y: 2)
         )
-        .padding(.horizontal)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+        )
     }
 }
 

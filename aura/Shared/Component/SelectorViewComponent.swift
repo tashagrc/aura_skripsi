@@ -12,18 +12,31 @@ struct SelectorViewComponent: View {
     let title: String
     
     var body: some View {
-        HStack {
+        HStack(spacing: 16) {
             Image(systemName: icon)
                 .font(.title2)
                 .foregroundColor(.blue)
+                .frame(width: 40, height: 40)
+                .background(Color.blue.opacity(0.2))
+                .cornerRadius(8)
             Text(title)
                 .font(.title3)
                 .fontWeight(.semibold)
+                .foregroundColor(.primary)
+                .lineLimit(1)
+                .truncationMode(.tail)
+            
+            Spacer()
         }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.blue.opacity(0.1))
-        .cornerRadius(10)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.blue.opacity(0.1))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.blue.opacity(0.4), lineWidth: 1)
+        )
+        .contentShape(Rectangle())
     }
 
 }

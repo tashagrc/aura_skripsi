@@ -13,15 +13,21 @@ struct SelectClothesTypeView: View {
     private var clothesType: [String] = ["Top Wear", "Bottom Wear", "Outer Wear"]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(spacing: 24) {
             
             Text("What do you want to wear?")
                 .font(.title)
+                .multilineTextAlignment(.leading)
                 .fontWeight(.bold)
+                .padding(.top, 40)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
-            ForEach(0..<3, id: \.self) { index in
-                CheckboxViewComponent(isChecked: $checkboxStates[index], label: clothesType[index])
+            VStack(alignment: .leading, spacing: 16) {
+                ForEach(0..<clothesType.count, id: \.self) { index in
+                    CheckboxViewComponent(isChecked: $checkboxStates[index], label: clothesType[index])
+                }
             }
+            
             
             Spacer()
             
@@ -29,8 +35,7 @@ struct SelectClothesTypeView: View {
                 ButtonViewComponent(title: "Continue", isPrimary: true)
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(50)
+        .padding(.horizontal, 16)
     }
         
 }
