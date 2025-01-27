@@ -61,9 +61,7 @@ struct InsertClothesGuideView: View {
                     Button("Cancel", role: .cancel) {}
                 }
                 NavigationLink(destination: ClothesDetailView(
-                    viewModel: ClothesDetailViewModel(
-                        isNext: true
-                ))) {
+                    viewModel: ClothesDetailViewModel())) {
                     ButtonViewComponent(title: "Fill in Manually", isPrimary: false)
                 }
             }
@@ -86,8 +84,7 @@ struct InsertClothesGuideView: View {
         .navigationDestination(isPresented: $viewModel.navigateToImage) {
             if let image = viewModel.selectedImage {
                 ClothesDetailView(viewModel: ClothesDetailViewModel(
-                    image: viewModel.selectedImage,
-                    isNext: true
+                    image: viewModel.selectedImage
                 ))
             }
         }

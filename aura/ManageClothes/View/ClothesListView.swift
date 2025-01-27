@@ -26,10 +26,10 @@ struct ClothesListView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     ForEach(cardData, id: \.title) { card in
-                        NavigationLink(destination: ClothesDetailView(viewModel: ClothesDetailViewModel())) {
-                            ClothesCardViewComponent(title: card.title, description: card.description, imageName: "clothes_sample")
-            
-                        }
+//                        NavigationLink(destination: ClothesDetailView(viewModel: ClothesDetailViewModel())) {
+//                            ClothesCardViewComponent(title: card.title, description: card.description, imageName: "clothes_sample")
+//            
+//                        }
                     }
                 }
                 .padding(.top, 16)

@@ -9,5 +9,10 @@ import SwiftUI
 
 class RegisterRFIDTagViewModel: ObservableObject {
     @Published var isFound = false
+    @Published var clothesModel: ClothesModel
+
+    init(clothesModel: ClothesModel) {
+        self.clothesModel = clothesModel
+    }
 }
 

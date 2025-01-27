@@ -23,7 +23,7 @@ struct ClothesDetailView: View {
             
             HStack {
                 if viewModel.isEditing {
-                    TextField("Enter text", text: $viewModel.text)
+                    TextField("Enter Title", text: $viewModel.title)
                         .font(.title)
                         .fontWeight(.bold)
                         .textFieldStyle(.roundedBorder)
@@ -32,7 +32,7 @@ struct ClothesDetailView: View {
                             viewModel.isEditing = false
                         }
                 } else {
-                    Text(viewModel.text)
+                    Text(viewModel.title)
                         .font(.title)
                         .fontWeight(.bold)
                         .onTapGesture {
@@ -50,37 +50,45 @@ struct ClothesDetailView: View {
                 .buttonStyle(.borderless)
             }
             .padding()
-            .background(viewModel.isEditing ? Color(.systemGray6) : Color.clear) // Subtle background when editing
+            .background(viewModel.isEditing ? Color(.systemGray6) : Color.clear)
             .cornerRadius(8)
             .animation(.easeInOut, value: viewModel.isEditing)
             
             LazyVGrid(columns: viewModel.columns, spacing: 12) {
-                ForEach(viewModel.data, id: \.0) { key, value in
+                ForEach(viewModel.fields, id: \.0) { key, binding in
                     Text(key)
                         .font(.headline)
                         .fontWeight(.semibold)
-                    Picker("Select a paint color", selection: $viewModel.selection) {
-                        ForEach(viewModel.colors, id: \.self) {
-                            Text($0)
+                    
+                    if let pickerData = viewModel.pickerData[key] {
+                        Picker(key, selection: binding) {
+                            ForEach(pickerData, id: \.self) { value in
+                                Text(value).tag(value)
+                            }
                         }
+                        .pickerStyle(MenuPickerStyle())
+                    } else {
+                        TextField("Enter \(key)", text: binding)
+                            .textFieldStyle(.roundedBorder)
                     }
-                    .pickerStyle(MenuPickerStyle())
                 }
             }
             .padding(.horizontal, 16)
-           
             
             Spacer()
             
-            if viewModel.isNext {
-                NavigationLink(destination: RegisterRFIDTagView(viewModel: RegisterRFIDTagViewModel())) {
-                    ButtonViewComponent(title: "Continue", isPrimary: true)
-                }
-                
+            NavigationLink(
+                destination: RegisterRFIDTagView(
+                    viewModel: RegisterRFIDTagViewModel(clothesModel: viewModel.clothesModel)
+                )
+            ) {
+                ButtonViewComponent(title: "Continue", isPrimary: true)
             }
-            
+            .onAppear {
+                viewModel.prepareForNextPage()
+            }
         }
         .padding(.horizontal, 16)
-        
     }
 }
+
