@@ -37,6 +37,9 @@ struct RegisterRFIDTagView: View {
             
         }
         .padding(.horizontal, 16)
+        .onAppear {
+            viewModel.startTagDetection()
+        }
     }
 }
 
