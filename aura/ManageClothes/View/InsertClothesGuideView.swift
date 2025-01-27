@@ -11,6 +11,19 @@ import PhotosUI
 struct InsertClothesGuideView: View {
     @StateObject private var viewModel = InsertClothesViewModel()
     
+    let clothesModel = ClothesModel(
+        id: UUID().uuidString,
+        rfid_id: "",
+        occasion: "Formal",
+        category: "Outerwear",
+        type: "Blazer",
+        color: "Black",
+        color_code: "#000000",
+        pattern: "Solid",
+        desc: "Black Blazer",
+        imagePath: ""
+    )
+    
     var body: some View {
         VStack(spacing: 24) {
             Text("Insert a clothes")
@@ -61,7 +74,7 @@ struct InsertClothesGuideView: View {
                     Button("Cancel", role: .cancel) {}
                 }
                 NavigationLink(destination: ClothesDetailView(
-                    viewModel: ClothesDetailViewModel())) {
+                    viewModel: ClothesDetailViewModel(clothesModel: clothesModel))) {
                     ButtonViewComponent(title: "Fill in Manually", isPrimary: false)
                 }
             }
@@ -84,7 +97,12 @@ struct InsertClothesGuideView: View {
         .navigationDestination(isPresented: $viewModel.navigateToImage) {
             if let image = viewModel.selectedImage {
                 ClothesDetailView(viewModel: ClothesDetailViewModel(
-                    image: viewModel.selectedImage
+                    clothesModel: {
+                        let updatedModel = clothesModel
+                        updatedModel.imagePath = viewModel.saveImageToDocuments(image: image) ?? ""
+                        return updatedModel
+                    }(),
+                    image: image
                 ))
             }
         }

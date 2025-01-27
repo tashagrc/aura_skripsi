@@ -42,27 +42,14 @@ class ClothesDetailViewModel: ObservableObject {
         ]
     }
     
-    init(image: UIImage? = nil) {
-        let defaultClothesModel = ClothesModel(
-            id: UUID().uuidString,
-            rfid_id: "",
-            occasion: "Casual",
-            category: "Top",
-            type: "T-shirt",
-            color: "Yellow",
-            color_code: "#FFFF00",
-            pattern: "Solid",
-            desc: "Red T-shirt",
-            imagePath: ""
-        )
-        self.clothesModel = defaultClothesModel
-
-        self.title = defaultClothesModel.desc
-        self.type = defaultClothesModel.type
-        self.category = defaultClothesModel.category
-        self.color = defaultClothesModel.color
-        self.pattern = defaultClothesModel.pattern
-        self.occasion = defaultClothesModel.occasion
+    init(clothesModel: ClothesModel, image: UIImage? = nil) {
+        self.clothesModel = clothesModel
+        self.title = clothesModel.desc
+        self.type = clothesModel.type
+        self.category = clothesModel.category
+        self.color = clothesModel.color
+        self.pattern = clothesModel.pattern
+        self.occasion = clothesModel.occasion
         self.image = image
     }
     
@@ -75,6 +62,7 @@ class ClothesDetailViewModel: ObservableObject {
         clothesModel.desc = title
     }
 }
+
 
 
 
