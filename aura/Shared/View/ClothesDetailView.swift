@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ClothesDetailView: View {
     var isNext: Bool = false
+    @State private var text: String = "Red T-shirt"
+    @State private var isEditing: Bool = false
     
     let data = [
         ("Type", "T-shirt"),
@@ -26,20 +28,51 @@ struct ClothesDetailView: View {
     @State private var selection = "T-Shirt"
     let colors = ["T-Shirt", "Green", "Blue", "Black", "Tartan"]
     
+    var image: UIImage?
+    
     var body: some View {
         VStack(spacing: 24) {
-            Image("clothes_sample")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 200)
-                .cornerRadius(12)
-                
             
-            Text("Red T-shirt")
-                .font(.title)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            if let image = image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 200)
+                    .cornerRadius(12)
+            }
+            
+            HStack {
+                if isEditing {
+                    TextField("Enter text", text: $text)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .textFieldStyle(.roundedBorder)
+                        .submitLabel(.done)
+                        .onSubmit {
+                            isEditing = false
+                        }
+                } else {
+                    Text(text)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .onTapGesture {
+                            isEditing = true
+                        }
+                }
+                
+                Button(action: {
+                    isEditing.toggle()
+                }) {
+                    Image(systemName: isEditing ? "checkmark" : "pencil")
+                        .font(.title)
+                        .foregroundColor(.blue)
+                }
+                .buttonStyle(.borderless)
+            }
+            .padding()
+            .background(isEditing ? Color(.systemGray6) : Color.clear) // Subtle background when editing
+            .cornerRadius(8)
+            .animation(.easeInOut, value: isEditing)
             
             LazyVGrid(columns: columns, spacing: 12) {
                 ForEach(data, id: \.0) { key, value in
