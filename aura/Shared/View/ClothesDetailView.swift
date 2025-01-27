@@ -8,32 +8,12 @@
 import SwiftUI
 
 struct ClothesDetailView: View {
-    var isNext: Bool = false
-    @State private var text: String = "Red T-shirt"
-    @State private var isEditing: Bool = false
-    
-    let data = [
-        ("Type", "T-shirt"),
-        ("Category", "Top"),
-        ("Color", "Yellow"),
-        ("Pattern", "Polka dot"),
-        ("Occasion", "Casual")
-    ]
-    
-    let columns = [
-        GridItem(.fixed(120), alignment: .leading),
-        GridItem(.flexible(), alignment: .leading),
-    ]
-    
-    @State private var selection = "T-Shirt"
-    let colors = ["T-Shirt", "Green", "Blue", "Black", "Tartan"]
-    
-    var image: UIImage?
+    @ObservedObject var viewModel: ClothesDetailViewModel
     
     var body: some View {
         VStack(spacing: 24) {
             
-            if let image = image {
+            if let image = viewModel.image {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
@@ -42,45 +22,45 @@ struct ClothesDetailView: View {
             }
             
             HStack {
-                if isEditing {
-                    TextField("Enter text", text: $text)
+                if viewModel.isEditing {
+                    TextField("Enter text", text: $viewModel.text)
                         .font(.title)
                         .fontWeight(.bold)
                         .textFieldStyle(.roundedBorder)
                         .submitLabel(.done)
                         .onSubmit {
-                            isEditing = false
+                            viewModel.isEditing = false
                         }
                 } else {
-                    Text(text)
+                    Text(viewModel.text)
                         .font(.title)
                         .fontWeight(.bold)
                         .onTapGesture {
-                            isEditing = true
+                            viewModel.isEditing = true
                         }
                 }
                 
                 Button(action: {
-                    isEditing.toggle()
+                    viewModel.isEditing.toggle()
                 }) {
-                    Image(systemName: isEditing ? "checkmark" : "pencil")
+                    Image(systemName: viewModel.isEditing ? "checkmark" : "pencil")
                         .font(.title)
                         .foregroundColor(.blue)
                 }
                 .buttonStyle(.borderless)
             }
             .padding()
-            .background(isEditing ? Color(.systemGray6) : Color.clear) // Subtle background when editing
+            .background(viewModel.isEditing ? Color(.systemGray6) : Color.clear) // Subtle background when editing
             .cornerRadius(8)
-            .animation(.easeInOut, value: isEditing)
+            .animation(.easeInOut, value: viewModel.isEditing)
             
-            LazyVGrid(columns: columns, spacing: 12) {
-                ForEach(data, id: \.0) { key, value in
+            LazyVGrid(columns: viewModel.columns, spacing: 12) {
+                ForEach(viewModel.data, id: \.0) { key, value in
                     Text(key)
                         .font(.headline)
                         .fontWeight(.semibold)
-                    Picker("Select a paint color", selection: $selection) {
-                        ForEach(colors, id: \.self) {
+                    Picker("Select a paint color", selection: $viewModel.selection) {
+                        ForEach(viewModel.colors, id: \.self) {
                             Text($0)
                         }
                     }
@@ -92,8 +72,8 @@ struct ClothesDetailView: View {
             
             Spacer()
             
-            if isNext {
-                NavigationLink(destination: RegisterRFIDTagView()) {
+            if viewModel.isNext {
+                NavigationLink(destination: RegisterRFIDTagView(viewModel: RegisterRFIDTagViewModel())) {
                     ButtonViewComponent(title: "Continue", isPrimary: true)
                 }
                 
@@ -103,8 +83,4 @@ struct ClothesDetailView: View {
         .padding(.horizontal, 16)
         
     }
-}
-
-#Preview {
-    ClothesDetailView()
 }

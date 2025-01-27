@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct RegisterRFIDTagView: View {
-    var isFound: Bool = false
+    @ObservedObject var viewModel: RegisterRFIDTagViewModel
+    
     
     var body: some View {
         VStack(spacing: 24) {
@@ -25,11 +26,13 @@ struct RegisterRFIDTagView: View {
             
             Spacer().frame(height: 24)
             
-            FindCardViewComponent(itemName: "Aura Tag", status: false)
+            FindCardViewComponent(itemName: "Aura Tag", status: viewModel.isFound)
             Spacer()
             
-            NavigationLink(destination: SuccessView(iconName: "paperclip", title: "Attach the registered Aura tag to the clothes you took photos of earlier", subtitle: "Use sewing, adhesive, or a clip to securely attatch the tag.", returnTab: 1)) {
-                ButtonViewComponent(title: "Continue", isPrimary: true)
+            if viewModel.isFound {
+                NavigationLink(destination: SuccessView(iconName: "paperclip", title: "Attach the registered Aura tag to the clothes you took photos of earlier", subtitle: "Use sewing, adhesive, or a clip to securely attatch the tag.", returnTab: 1)) {
+                    ButtonViewComponent(title: "Continue", isPrimary: true)
+                }
             }
             
         }
@@ -37,6 +40,3 @@ struct RegisterRFIDTagView: View {
     }
 }
 
-#Preview {
-    RegisterRFIDTagView()
-}

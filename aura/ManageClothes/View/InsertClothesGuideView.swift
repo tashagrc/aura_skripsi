@@ -9,12 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct InsertClothesGuideView: View {
-    @State private var showActionSheet = false
-    @State private var showCamera = false
-    @State private var showPhotoPicker = false
-    @State private var selectedImage: UIImage?
-    @State private var selectedItem: PhotosPickerItem?
-    @State private var navigateToImage = false
+    @StateObject private var viewModel = InsertClothesViewModel()
     
     var body: some View {
         VStack(spacing: 24) {
@@ -52,42 +47,48 @@ struct InsertClothesGuideView: View {
             VStack(spacing: 16) {
                 
                 Button(action: {
-                    showActionSheet = true
+                    viewModel.showActionSheet = true
                 }) {
                     ButtonViewComponent(title: "Take Photo", isPrimary: true)
                 }
-                .confirmationDialog("Select an option", isPresented: $showActionSheet) {
+                .confirmationDialog("Select an option", isPresented: $viewModel.showActionSheet) {
                     Button("Pick an Image from Library") {
-                        showPhotoPicker = true
+                        viewModel.showPhotoPicker = true
                     }
                     Button("Take a Photo") {
-                        showCamera = true
+                        viewModel.showCamera = true
                     }
                     Button("Cancel", role: .cancel) {}
                 }
-                NavigationLink(destination: ClothesDetailView(isNext: true)) {
+                NavigationLink(destination: ClothesDetailView(
+                    viewModel: ClothesDetailViewModel(
+                        isNext: true
+                ))) {
                     ButtonViewComponent(title: "Fill in Manually", isPrimary: false)
                 }
             }
             
         }
         .padding(.horizontal, 16)
-        .fullScreenCover(isPresented: $showCamera) {
-            CameraView(selectedImage: $selectedImage, navigateToImage: $navigateToImage)
+        .fullScreenCover(isPresented: $viewModel.showCamera) {
+            CameraView(selectedImage: $viewModel.selectedImage, navigateToImage: $viewModel.navigateToImage)
         }
-        .photosPicker(isPresented: $showPhotoPicker, selection: $selectedItem, matching: .images)
-        .onChange(of: selectedItem) { _ in
+        .photosPicker(isPresented: $viewModel.showPhotoPicker, selection: $viewModel.selectedItem, matching: .images)
+        .onChange(of: viewModel.selectedItem) { _ in
             Task {
-                if let data = try? await selectedItem?.loadTransferable(type: Data.self),
+                if let data = try? await viewModel.selectedItem?.loadTransferable(type: Data.self),
                    let uiImage = UIImage(data: data) {
-                    selectedImage = uiImage
-                    navigateToImage = true
+                    viewModel.selectedImage = uiImage
+                    viewModel.navigateToImage = true
                 }
             }
         }
-        .navigationDestination(isPresented: $navigateToImage) {
-            if let image = selectedImage {
-                ClothesDetailView(image: image)
+        .navigationDestination(isPresented: $viewModel.navigateToImage) {
+            if let image = viewModel.selectedImage {
+                ClothesDetailView(viewModel: ClothesDetailViewModel(
+                    image: viewModel.selectedImage,
+                    isNext: true
+                ))
             }
         }
     }

@@ -26,7 +26,7 @@ struct ClothesListView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     ForEach(cardData, id: \.title) { card in
-                        NavigationLink(destination: ClothesDetailView()) {
+                        NavigationLink(destination: ClothesDetailView(viewModel: ClothesDetailViewModel())) {
                             ClothesCardViewComponent(title: card.title, description: card.description, imageName: "clothes_sample")
             
                         }
