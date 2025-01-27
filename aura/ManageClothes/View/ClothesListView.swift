@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ClothesListView: View {
-    var cardData = [
-        (title: "Card 1", description: "Description of card 1"),
-        (title: "Card 2", description: "Description of card 2"),
-        (title: "Card 3", description: "Description of card 3")
-    ]
-    
+    @Environment(\.modelContext) private var modelContext
+    @StateObject private var viewModel: ClothesListViewModel
+
+    init() {
+        _viewModel = StateObject(wrappedValue: ClothesListViewModel())
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             Text("My Clothes")
@@ -25,22 +27,33 @@ struct ClothesListView: View {
             
             ScrollView {
                 VStack(spacing: 16) {
-                    ForEach(cardData, id: \.title) { card in
-//                        NavigationLink(destination: ClothesDetailView(viewModel: ClothesDetailViewModel())) {
-//                            ClothesCardViewComponent(title: card.title, description: card.description, imageName: "clothes_sample")
-//            
-//                        }
+                    if viewModel.clothes.isEmpty {
+                        Text("No clothes found.")
+                            .font(.body)
+                            .foregroundColor(.gray)
+                    } else {
+                        ForEach(viewModel.clothes, id: \.id) { clothes in
+                            NavigationLink(
+                                destination: ClothesDetailView(
+                                    viewModel: ClothesDetailViewModel(clothesModel: clothes)
+                                )
+                            ) {
+                                ClothesCardViewComponent(
+                                    title: clothes.type,
+                                    description: clothes.desc,
+                                    imageName: clothes.imagePath
+                                )
+                            }
+                        }
                     }
                 }
                 .padding(.top, 16)
-                
             }
             Spacer()
         }
         .padding(.horizontal, 16)
+        .onAppear {
+            viewModel.fetchData(using: modelContext)
+        }
     }
-}
-
-#Preview {
-    ClothesListView()
 }

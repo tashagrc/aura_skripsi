@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegisterRFIDTagView: View {
     @ObservedObject var viewModel: RegisterRFIDTagViewModel
-    
+    @Environment(\.modelContext) var modelContext
     
     var body: some View {
         VStack(spacing: 24) {
@@ -38,6 +38,7 @@ struct RegisterRFIDTagView: View {
         }
         .padding(.horizontal, 16)
         .onAppear {
+            viewModel.modelContext = modelContext
             viewModel.startTagDetection()
         }
     }

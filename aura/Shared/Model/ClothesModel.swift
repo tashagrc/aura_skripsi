@@ -35,17 +35,3 @@ class ClothesModel {
     }
 }
 
-extension ClothesModel {
-    struct ClothesDetails: Codable {
-        var id: String
-        var rfid_id: String
-        var occasion: String
-        var category: String
-        var type: String
-        var color: String
-        var color_code: String
-        var pattern: String
-        var desc: String
-        var imagePath: String
-    }
-}

@@ -11,7 +11,7 @@ import SwiftData
 class RegisterRFIDTagViewModel: ObservableObject {
     @Published var isFound = false
     @Published var clothesModel: ClothesModel
-    @Environment(\.modelContext) var modelContext
+    var modelContext: ModelContext? = nil
 
     init(clothesModel: ClothesModel) {
         self.clothesModel = clothesModel
@@ -26,13 +26,8 @@ class RegisterRFIDTagViewModel: ObservableObject {
     
     private func saveClothesModel() {
         clothesModel.rfid_id = UUID().uuidString
-        do {
-            try modelContext.insert(clothesModel)
-            try modelContext.save()
-            print("ClothesModel saved successfully.")
-        } catch {
-            print("Failed to save ClothesModel: \(error)")
-        }
+        modelContext?.insert(clothesModel)
+        try? modelContext?.save()
     }
 }
 
