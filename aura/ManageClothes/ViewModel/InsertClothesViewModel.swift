@@ -28,23 +28,6 @@ class InsertClothesViewModel: ObservableObject {
     }
     
     func saveImageToDocuments(image: UIImage) -> String? {
-        guard let data = image.jpegData(compressionQuality: 0.8) else {
-            return nil
-        }
-        
-        let fileName = UUID().uuidString + ".jpg"
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        let fileURL = documentsDirectory?.appendingPathComponent(fileName)
-        
-        do {
-            if let fileURL = fileURL {
-                try data.write(to: fileURL)
-                return fileURL.path // Return the file path as a string
-            }
-        } catch {
-            print("Error saving image: \(error)")
-        }
-        
-        return nil
+        return DocumentManager.saveImageToDocuments(image: image)
     }
 }

@@ -10,11 +10,11 @@ import SwiftUI
 struct ClothesCardViewComponent: View {
     var title: String
     var description: String
-    var imageName: String
+    var imagePath: String
     
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            Image(imageName)
+            Image(imagePath)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 50, height: 50)
