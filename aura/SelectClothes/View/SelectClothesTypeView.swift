@@ -10,7 +10,7 @@ import SwiftUI
 struct SelectClothesTypeView: View {
     
     @State private var checkboxStates: [Bool] = [false, false, false]
-    private var clothesType: [String] = ["Top Wear", "Bottom Wear", "Outer Wear"]
+    @ObservedObject var viewModel: ClothesTypeViewModel
     
     var body: some View {
         VStack(spacing: 24) {
@@ -23,8 +23,16 @@ struct SelectClothesTypeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             VStack(alignment: .leading, spacing: 16) {
-                ForEach(0..<clothesType.count, id: \.self) { index in
-                    CheckboxViewComponent(isChecked: $checkboxStates[index], label: clothesType[index])
+                ForEach(0..<viewModel.clothesTypeOptions.count, id: \.self) { index in
+                    CheckboxViewComponent(isChecked: $checkboxStates[index], label: viewModel.clothesTypeOptions[index])
+                        .onChange(of: checkboxStates[index]) { isChecked in
+                            let type = viewModel.clothesTypeOptions[index]
+                            if isChecked {
+                                viewModel.selectedClothesTypes.append(type)
+                            } else {
+                                viewModel.selectedClothesTypes.removeAll { $0 == type }
+                            }
+                        }
                 }
             }
             
@@ -42,6 +50,3 @@ struct SelectClothesTypeView: View {
 
 
 
-#Preview {
-    SelectClothesTypeView()
-}

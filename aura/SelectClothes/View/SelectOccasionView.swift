@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectOccasionView: View {
-    @State private var path = [Int]()
+    @StateObject private var occasionViewModel = OccasionViewModel()
     
     var body: some View {
         NavigationStack {
@@ -22,8 +22,16 @@ struct SelectOccasionView: View {
                 
                 VStack(spacing: 16) {
                     ForEach(buttonData, id: \.title) { button in
-                        NavigationLink(destination: SelectClothesTypeView()) {
+                        NavigationLink(destination: {
+                            let clothesTypeViewModel = ClothesTypeViewModel(selectedOccasion: button.title)
+                            SelectClothesTypeView(viewModel: clothesTypeViewModel)
+                        }) {
                             SelectorViewComponent(icon: button.icon, title: button.title)
+                                .simultaneousGesture(
+                                    TapGesture().onEnded {
+                                        occasionViewModel.selectedOccasion = button.title
+                                    }
+                                )
                         }
                         
                     }
