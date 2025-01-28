@@ -14,13 +14,13 @@ struct InsertClothesGuideView: View {
     let clothesModel = ClothesModel(
         id: UUID().uuidString,
         rfid_id: "",
-        occasion: "Formal",
-        category: "Outerwear",
-        type: "Blazer",
-        color: "Black",
+        occasion: "Select Occasion",
+        category: "Select Category",
+        type: "Select Type",
+        color: "Select Color",
         color_code: "#000000",
-        pattern: "Solid",
-        desc: "Black Blazer",
+        pattern: "Select Pattern",
+        desc: "Default",
         imagePath: ""
     )
     

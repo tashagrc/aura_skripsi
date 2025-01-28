@@ -33,11 +33,11 @@ class ClothesDetailViewModel: ObservableObject {
     ]
     
     var pickerData: [String: [String]] = [
-        "Type": ["T-shirt", "Sweater", "Jeans"],
-        "Category": ["Top", "Bottom", "Outerwear"],
-        "Color": ["Yellow", "Red", "Blue", "Green", "Black"],
-        "Pattern": ["Solid", "Striped", "Polka dot", "Plaid"],
-        "Occasion": ["Casual", "Formal", "Sports"]
+        "Type": ["Select Type", "Blazer", "Blouse", "Crop Top", "Dress", "Hoodie", "Longsleeve", "Nothing", "Outwear", "Pants", "Polo", "Shirt", "Shorts", "Skirt", "T-Shirt", "Undershirt"],
+        "Category": ["Select Category", "Top", "Bottom", "Outer"],
+        "Color": ["Select Color", "Black", "Blue", "Brown", "Green", "Grey", "Orange", "Pink", "Purple", "Red", "White", "Yellow"],
+        "Pattern": ["Select Pattern", "Plain", "Animal", "Cartoon", "Floral", "Polka Dot", "Squares", "Stripes", "Tribal"],
+        "Occasion": ["Select Occasion", "Casual", "Formal", "Sports Wear", "Streetwear", "Other"]
     ]
     
     var fields: [(String, Binding<String>)] {
