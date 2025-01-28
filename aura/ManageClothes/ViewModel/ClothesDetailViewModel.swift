@@ -24,8 +24,7 @@ class ClothesDetailViewModel: ObservableObject {
     @Published var pattern: String
     @Published var occasion: String
     
-    var modelContext: ModelContext? = nil
-
+    var modelContext: ModelContext?
     var mode: Mode
     
     let columns = [
@@ -70,15 +69,26 @@ class ClothesDetailViewModel: ObservableObject {
         clothesModel.pattern = pattern
         clothesModel.occasion = occasion
         clothesModel.desc = title
+    }
+    
+    private func updateField(key: String, value: String) {
+        switch key {
+        case "Type": clothesModel.type = value
+        case "Category": clothesModel.category = value
+        case "Color": clothesModel.color = value
+        case "Pattern": clothesModel.pattern = value
+        case "Occasion": clothesModel.occasion = value
+        default: break
+        }
         
-        print("in prepare next: " + clothesModel.desc)
+        if mode == .view {
+            saveChangesIfNeeded()
+        }
     }
     
     func saveChangesIfNeeded() {
-        guard mode == .view else { return }
-        prepareForNextPage()
-        // save to db
-        DatabaseManager.shared.saveClothesModel(clothesModel, using: modelContext!)
+        guard mode == .view, let context = modelContext else { return }
+        DatabaseManager.shared.saveClothesModel(clothesModel, using: context)
     }
 }
 
