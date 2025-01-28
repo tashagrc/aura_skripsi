@@ -74,7 +74,7 @@ struct InsertClothesGuideView: View {
                     Button("Cancel", role: .cancel) {}
                 }
                 NavigationLink(destination: ClothesDetailView(
-                    viewModel: ClothesDetailViewModel(clothesModel: clothesModel))) {
+                    viewModel: ClothesDetailViewModel(clothesModel: clothesModel, mode: .add))) {
                     ButtonViewComponent(title: "Fill in Manually", isPrimary: false)
                 }
             }
@@ -101,7 +101,7 @@ struct InsertClothesGuideView: View {
                         let updatedModel = clothesModel
                         updatedModel.imagePath = viewModel.saveImageToDocuments(image: image) ?? ""
                         return updatedModel
-                    }(),
+                    }(), mode: .add,
                     image: image
                 ))
             }

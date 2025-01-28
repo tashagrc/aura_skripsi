@@ -26,6 +26,7 @@ class RegisterRFIDTagViewModel: ObservableObject {
     
     private func saveClothesModel() {
         clothesModel.rfid_id = UUID().uuidString
+        print("saved in rfid page: " + clothesModel.desc)
         DatabaseManager.shared.saveClothesModel(clothesModel, using: modelContext!)
     }
 }

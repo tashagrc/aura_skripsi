@@ -36,7 +36,7 @@ struct ClothesListView: View {
                             NavigationLink(
                                 destination: ClothesDetailView(
                                     viewModel: ClothesDetailViewModel(
-                                        clothesModel: clothes,
+                                        clothesModel: clothes, mode: .view,
                                         image: ClothesListViewModel.loadImageFromDocuments(imagePath: clothes.imagePath)
                                     )
                                 )

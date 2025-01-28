@@ -6,19 +6,28 @@
 //
 
 import SwiftUI
+import SwiftData
 
 class ClothesDetailViewModel: ObservableObject {
+    enum Mode {
+        case add
+        case view
+    }
+    
     @Published var clothesModel: ClothesModel
     @Published var isEditing = false
     @Published var image: UIImage?
-    
     @Published var title: String
     @Published var type: String
     @Published var category: String
     @Published var color: String
     @Published var pattern: String
     @Published var occasion: String
+    
+    var modelContext: ModelContext? = nil
 
+    var mode: Mode
+    
     let columns = [
         GridItem(.fixed(120), alignment: .leading),
         GridItem(.flexible(), alignment: .leading),
@@ -42,8 +51,9 @@ class ClothesDetailViewModel: ObservableObject {
         ]
     }
     
-    init(clothesModel: ClothesModel, image: UIImage? = nil) {
+    init(clothesModel: ClothesModel, mode: Mode, image: UIImage? = nil) {
         self.clothesModel = clothesModel
+        self.mode = mode
         self.image = image
         self.title = clothesModel.desc
         self.type = clothesModel.type
@@ -60,6 +70,15 @@ class ClothesDetailViewModel: ObservableObject {
         clothesModel.pattern = pattern
         clothesModel.occasion = occasion
         clothesModel.desc = title
+        
+        print("in prepare next: " + clothesModel.desc)
+    }
+    
+    func saveChangesIfNeeded() {
+        guard mode == .view else { return }
+        prepareForNextPage()
+        // save to db
+        DatabaseManager.shared.saveClothesModel(clothesModel, using: modelContext!)
     }
 }
 

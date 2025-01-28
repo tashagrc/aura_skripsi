@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ClothesDetailView: View {
     @ObservedObject var viewModel: ClothesDetailViewModel
+    @Environment(\.modelContext) var modelContext
     
     var body: some View {
         VStack(spacing: 24) {
@@ -40,6 +41,10 @@ struct ClothesDetailView: View {
                         .submitLabel(.done)
                         .onSubmit {
                             viewModel.isEditing = false
+                            if viewModel.mode == .view {
+                                viewModel.saveChangesIfNeeded()
+                            }
+                            
                         }
                 } else {
                     Text(viewModel.title)
@@ -52,6 +57,9 @@ struct ClothesDetailView: View {
                 
                 Button(action: {
                     viewModel.isEditing.toggle()
+                    if viewModel.mode == .view && !viewModel.isEditing {
+                        viewModel.saveChangesIfNeeded()
+                    }
                 }) {
                     Image(systemName: viewModel.isEditing ? "checkmark" : "pencil")
                         .font(.title)
@@ -77,9 +85,21 @@ struct ClothesDetailView: View {
                             }
                         }
                         .pickerStyle(MenuPickerStyle())
+                        .onChange(of: binding.wrappedValue) { _ in
+                            viewModel.prepareForNextPage()
+                            if viewModel.mode == .view {
+                                viewModel.saveChangesIfNeeded()
+                            }
+                        }
                     } else {
                         TextField("Enter \(key)", text: binding)
                             .textFieldStyle(.roundedBorder)
+                            .onChange(of: binding.wrappedValue) { _ in
+                                viewModel.prepareForNextPage()
+                                if viewModel.mode == .view {
+                                    viewModel.saveChangesIfNeeded()
+                                }
+                            }
                     }
                 }
             }
@@ -87,18 +107,22 @@ struct ClothesDetailView: View {
             
             Spacer()
             
-            NavigationLink(
-                destination: RegisterRFIDTagView(
-                    viewModel: RegisterRFIDTagViewModel(clothesModel: viewModel.clothesModel)
-                )
-            ) {
-                ButtonViewComponent(title: "Continue", isPrimary: true)
+            if viewModel.mode == .add {
+                NavigationLink(
+                    destination: RegisterRFIDTagView(
+                        viewModel: RegisterRFIDTagViewModel(clothesModel: viewModel.clothesModel)
+                    )
+                ) {
+                    ButtonViewComponent(title: "Continue", isPrimary: true)
+                }
             }
-            .onAppear {
-                viewModel.prepareForNextPage()
-            }
+            
         }
         .padding(.horizontal, 16)
+        .onAppear() {
+            viewModel.prepareForNextPage()
+            viewModel.modelContext = modelContext
+        }
     }
 }
 
