@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 public struct DocumentManager {
     static func loadImageFromDocuments(imagePath: String) -> UIImage? {
         let fileManager = FileManager.default
@@ -37,7 +36,7 @@ public struct DocumentManager {
         do {
             if let fileURL = fileURL {
                 try data.write(to: fileURL)
-                return fileURL.path // Return the file path as a string
+                return fileName
             }
         } catch {
             print("Error saving image: \(error)")
@@ -46,4 +45,5 @@ public struct DocumentManager {
         return nil
     }
 }
+
 
