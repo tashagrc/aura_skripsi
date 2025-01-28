@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SelectOccasionView: View {
+struct OccasionView: View {
     @StateObject private var occasionViewModel = OccasionViewModel()
     
     var body: some View {
@@ -24,7 +24,7 @@ struct SelectOccasionView: View {
                     ForEach(buttonData, id: \.title) { button in
                         NavigationLink(destination: {
                             let clothesTypeViewModel = ClothesTypeViewModel(selectedOccasion: button.title)
-                            SelectClothesTypeView(viewModel: clothesTypeViewModel)
+                            ClothesTypeView(viewModel: clothesTypeViewModel)
                         }) {
                             SelectorViewComponent(icon: button.icon, title: button.title)
                                 .simultaneousGesture(
@@ -59,5 +59,5 @@ let buttonData: [ButtonData] = [
 ]
 
 #Preview {
-    SelectOccasionView()
+    OccasionView()
 }

@@ -7,13 +7,9 @@
 
 import SwiftUI
 
-struct SelectClothesItemView: View {
+struct ClothesItemView: View {
     
-    var cardData = [
-        (title: "Card 1", description: "Description of card 1"),
-        (title: "Card 2", description: "Description of card 2"),
-        (title: "Card 3", description: "Description of card 3")
-    ]
+    @ObservedObject var viewModel: ClothesItemViewModel
     
     var body: some View {
         VStack(spacing: 24) {
@@ -23,7 +19,7 @@ struct SelectClothesItemView: View {
                     .font(.title)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.leading)
-                Text("Show clothes that match with XX")
+                Text("Show clothes that match with \(viewModel.selectedClothesTypes.joined(separator: ", ")) for \(viewModel.selectedOccasion)")
                     .font(.title3)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
@@ -32,7 +28,7 @@ struct SelectClothesItemView: View {
             
             ScrollView {
                 VStack(spacing: 16) {
-                    ForEach(cardData, id: \.title) { card in
+                    ForEach(viewModel.filteredClothes, id: \.title) { card in
                         NavigationLink(destination: ClothesSummaryView()) {
                             ClothesCardViewComponent(title: card.title, description: card.description, image: nil)
                                 .frame(maxWidth: .infinity)
@@ -48,8 +44,4 @@ struct SelectClothesItemView: View {
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 16)
     }
-}
-
-#Preview {
-    SelectClothesItemView()
 }

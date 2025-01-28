@@ -38,7 +38,7 @@ struct SuccessView: View {
             Spacer()
             
             NavigationLink(
-                destination: returnTab == 0 ? AnyView(SelectOccasionView()) : AnyView(ManageClothesMenuView())
+                destination: returnTab == 0 ? AnyView(OccasionView()) : AnyView(ManageClothesMenuView())
             ) {
                 ButtonViewComponent(title: "Done", isPrimary: true)
             }

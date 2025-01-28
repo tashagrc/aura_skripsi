@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SelectClothesTypeView: View {
+struct ClothesTypeView: View {
     
     @State private var checkboxStates: [Bool] = [false, false, false]
     @ObservedObject var viewModel: ClothesTypeViewModel
@@ -39,7 +39,13 @@ struct SelectClothesTypeView: View {
             
             Spacer()
             
-            NavigationLink(destination: SelectClothesItemView()) {
+            NavigationLink(destination: {
+                let clothesItemViewModel = ClothesItemViewModel(
+                    selectedOccasion: viewModel.selectedOccasion,
+                    selectedClothesTypes: viewModel.selectedClothesTypes
+                )
+                ClothesItemView(viewModel: clothesItemViewModel)
+            }) {
                 ButtonViewComponent(title: "Continue", isPrimary: true)
             }
         }
