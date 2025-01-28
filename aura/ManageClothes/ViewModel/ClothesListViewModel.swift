@@ -16,5 +16,9 @@ class ClothesListViewModel: ObservableObject {
             self.clothes = fetchedClothes
         }
     }
+    
+    static func loadImageFromDocuments(imagePath: String) -> UIImage? {
+        return DocumentManager.loadImageFromDocuments(imagePath: imagePath)
+    }
 }
 

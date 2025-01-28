@@ -39,7 +39,7 @@ struct ClothesSummaryView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     ForEach(cardData, id: \.title) { card in
-                        ClothesCardViewComponent(title: card.title, description: card.description, imagePath: "clothes_sample")
+                        ClothesCardViewComponent(title: card.title, description: card.description, image: nil)
                             .frame(maxWidth: .infinity)
                     }
                 }
