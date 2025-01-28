@@ -44,13 +44,13 @@ class ClothesDetailViewModel: ObservableObject {
     
     init(clothesModel: ClothesModel, image: UIImage? = nil) {
         self.clothesModel = clothesModel
+        self.image = image
         self.title = clothesModel.desc
         self.type = clothesModel.type
         self.category = clothesModel.category
         self.color = clothesModel.color
         self.pattern = clothesModel.pattern
         self.occasion = clothesModel.occasion
-        self.image = image
     }
     
     func prepareForNextPage() {

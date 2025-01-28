@@ -21,7 +21,6 @@ struct ClothesDetailView: View {
                     .cornerRadius(12)
                     .shadow(radius: 4)
             } else {
-                // Placeholder if image is nil
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
@@ -97,9 +96,6 @@ struct ClothesDetailView: View {
             }
             .onAppear {
                 viewModel.prepareForNextPage()
-                if viewModel.image == nil {
-                    viewModel.image = DocumentManager.loadImageFromDocuments(imagePath: viewModel.clothesModel.imagePath)
-                }
             }
         }
         .padding(.horizontal, 16)

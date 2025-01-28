@@ -35,7 +35,10 @@ struct ClothesListView: View {
                         ForEach(viewModel.clothes, id: \.id) { clothes in
                             NavigationLink(
                                 destination: ClothesDetailView(
-                                    viewModel: ClothesDetailViewModel(clothesModel: clothes)
+                                    viewModel: ClothesDetailViewModel(
+                                        clothesModel: clothes,
+                                        image: ClothesListViewModel.loadImageFromDocuments(imagePath: clothes.imagePath)
+                                    )
                                 )
                             ) {
                                 ClothesCardViewComponent(
