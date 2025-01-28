@@ -41,7 +41,7 @@ struct ClothesListView: View {
                                 ClothesCardViewComponent(
                                     title: clothes.type,
                                     description: clothes.desc,
-                                    imageName: clothes.imagePath
+                                    imagePath: clothes.imagePath
                                 )
                             }
                         }

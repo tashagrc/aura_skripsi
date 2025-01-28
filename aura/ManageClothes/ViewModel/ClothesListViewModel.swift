@@ -12,14 +12,8 @@ class ClothesListViewModel: ObservableObject {
     @Published var clothes: [ClothesModel] = []
     
     func fetchData(using modelContext: ModelContext) {
-        do {
-            let descriptor = FetchDescriptor<ClothesModel>(sortBy: [SortDescriptor(\.type)])
-            let fetchedClothes = try modelContext.fetch(descriptor)
-            DispatchQueue.main.async {
-                self.clothes = fetchedClothes
-            }
-        } catch {
-            print("Fetch failed with error: \(error)")
+        DatabaseManager.shared.fetchData(using: modelContext) { fetchedClothes in
+            self.clothes = fetchedClothes
         }
     }
 }
