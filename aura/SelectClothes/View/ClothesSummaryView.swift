@@ -9,22 +9,18 @@ import SwiftUI
 
 struct ClothesSummaryView: View {
     
-    var cardData = [
-        (title: "Card 1", description: "Description of card 1"),
-        (title: "Card 2", description: "Description of card 2"),
-        (title: "Card 3", description: "Description of card 3")
-    ]
+    @ObservedObject var viewModel: ClothesSummaryViewModel
     
     var body: some View {
         VStack(spacing: 24) {
             
             VStack(alignment: .leading, spacing: 8) {
-                Text("Select a clothes")
+                Text("Clothes Summary")
                     .font(.title)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("Show clothes that match with XX")
+                Text("Here are the clothes you selected")
                     .font(.title3)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.secondary)
@@ -38,14 +34,16 @@ struct ClothesSummaryView: View {
             
             ScrollView {
                 VStack(spacing: 16) {
-                    ForEach(cardData, id: \.title) { card in
-                        ClothesCardViewComponent(title: card.title, description: card.description, image: nil)
-                            .frame(maxWidth: .infinity)
+                    ForEach(viewModel.selectedClothes, id: \.self) { clothes in
+                        ClothesCardViewComponent(
+                            title: clothes,
+                            description: "A great choice for your \(viewModel.occasion)"
+                        )
+                        .frame(maxWidth: .infinity)
                     }
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 16)
-                
             }
             
             VStack(alignment: .leading, spacing: 16) {
@@ -60,8 +58,4 @@ struct ClothesSummaryView: View {
             .padding(.horizontal, 16)
         }
     }
-}
-
-#Preview {
-    ClothesSummaryView()
 }

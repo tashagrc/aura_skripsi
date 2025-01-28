@@ -31,7 +31,12 @@ struct ClothesItemView: View {
                             destination: {
                                 let newViewModel = createNextViewModel(for: card.title)
                                 if newViewModel.isSelectionComplete {
-                                    ClothesSummaryView()
+                                    ClothesSummaryView(
+                                        viewModel: ClothesSummaryViewModel(
+                                            occasion: viewModel.selectedOccasion,
+                                            selectedClothes: viewModel.selectedClothes
+                                        )
+                                    )
                                 } else {
                                     ClothesItemView(viewModel: newViewModel)
                                 }
