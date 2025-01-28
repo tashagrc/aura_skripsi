@@ -25,38 +25,42 @@ struct ClothesListView: View {
                 .padding(.top, 40)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            ScrollView {
-                VStack(spacing: 16) {
-                    if viewModel.clothes.isEmpty {
-                        Text("No clothes found.")
-                            .font(.body)
-                            .foregroundColor(.gray)
-                    } else {
-                        ForEach(viewModel.clothes, id: \.id) { clothes in
-                            NavigationLink(
-                                destination: ClothesDetailView(
-                                    viewModel: ClothesDetailViewModel(
-                                        clothesModel: clothes, mode: .view,
-                                        image: ClothesListViewModel.loadImageFromDocuments(imagePath: clothes.imagePath)
-                                    )
-                                )
-                            ) {
-                                ClothesCardViewComponent(
-                                    title: clothes.type,
-                                    description: clothes.desc,
+            if viewModel.clothes.isEmpty {
+                Text("No clothes found.")
+                    .font(.body)
+                    .foregroundColor(.gray)
+                    .padding(.top, 16)
+            } else {
+                List {
+                    ForEach(viewModel.clothes, id: \.id) { clothes in
+                        NavigationLink(
+                            destination: ClothesDetailView(
+                                viewModel: ClothesDetailViewModel(
+                                    clothesModel: clothes, mode: .view,
                                     image: ClothesListViewModel.loadImageFromDocuments(imagePath: clothes.imagePath)
                                 )
-                            }
+                            )
+                        ) {
+                            ClothesCardViewComponent(
+                                title: clothes.type,
+                                description: clothes.desc,
+                                image: ClothesListViewModel.loadImageFromDocuments(imagePath: clothes.imagePath)
+                            )
+                        }
+                    }
+                    .onDelete { indexes in
+                        for index in indexes {
+                            viewModel.deleteClothes(clothes: viewModel.clothes[index], using: modelContext)
                         }
                     }
                 }
-                .padding(.top, 16)
+                .listStyle(PlainListStyle())
             }
-            Spacer()
         }
         .padding(.horizontal, 16)
         .onAppear {
             viewModel.fetchData(using: modelContext)
         }
     }
+    
 }

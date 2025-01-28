@@ -35,6 +35,15 @@ class DatabaseManager {
             print("Save failed with error: \(error)")
         }
     }
+    
+    func deleteClothesModel(_ clothesModel: ClothesModel, using modelContext: ModelContext) {
+        modelContext.delete(clothesModel)
+        do {
+            try modelContext.save()
+        } catch {
+            print("Delete failed with error: \(error)")
+        }
+    }
 }
 
 

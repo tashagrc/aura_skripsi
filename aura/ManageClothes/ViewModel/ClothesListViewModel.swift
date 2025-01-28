@@ -17,8 +17,13 @@ class ClothesListViewModel: ObservableObject {
         }
     }
     
+    func deleteClothes(clothes: ClothesModel, using modelContext: ModelContext) {
+        DatabaseManager.shared.deleteClothesModel(clothes, using: modelContext)
+    }
+    
     static func loadImageFromDocuments(imagePath: String) -> UIImage? {
         return DocumentManager.loadImageFromDocuments(imagePath: imagePath)
     }
 }
+
 
