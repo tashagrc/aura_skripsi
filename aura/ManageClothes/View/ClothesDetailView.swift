@@ -17,8 +17,19 @@ struct ClothesDetailView: View {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 200)
+                    .frame(maxWidth: .infinity, maxHeight: 300)
                     .cornerRadius(12)
+                    .shadow(radius: 4)
+            } else {
+                // Placeholder if image is nil
+                Image(systemName: "photo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 150, height: 150)
+                    .foregroundColor(.gray.opacity(0.5))
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(12)
+                    .shadow(radius: 4)
             }
             
             HStack {
@@ -86,6 +97,9 @@ struct ClothesDetailView: View {
             }
             .onAppear {
                 viewModel.prepareForNextPage()
+                if viewModel.image == nil {
+                    viewModel.image = DocumentManager.loadImageFromDocuments(imagePath: viewModel.clothesModel.imagePath)
+                }
             }
         }
         .padding(.horizontal, 16)
