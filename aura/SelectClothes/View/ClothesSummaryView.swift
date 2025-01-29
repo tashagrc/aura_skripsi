@@ -36,7 +36,7 @@ struct ClothesSummaryView: View {
                 VStack(spacing: 16) {
                     ForEach(viewModel.selectedClothes, id: \.self) { clothes in
                         ClothesCardViewComponent(
-                            title: clothes,
+                            title: clothes.desc,
                             description: "A great choice for your \(viewModel.occasion)"
                         )
                         .frame(maxWidth: .infinity)

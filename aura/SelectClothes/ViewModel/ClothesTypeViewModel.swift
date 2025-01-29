@@ -11,7 +11,7 @@ class ClothesTypeViewModel: ObservableObject {
     @Published var selectedOccasion: String
     @Published var selectedClothesTypes: [String] = []
     
-    let clothesTypeOptions: [String] = ["Top Wear", "Bottom Wear", "Outer Wear"]
+    let clothesTypeOptions: [String] = ["Top", "Bottom", "Outer"]
 
     init(selectedOccasion: String) {
         self.selectedOccasion = selectedOccasion

@@ -11,6 +11,7 @@ struct ClothesTypeView: View {
     
     @State private var checkboxStates: [Bool] = [false, false, false]
     @ObservedObject var viewModel: ClothesTypeViewModel
+    @Environment(\.modelContext) var modelContext
     
     var body: some View {
         VStack(spacing: 24) {
@@ -42,7 +43,7 @@ struct ClothesTypeView: View {
             NavigationLink(destination: {
                 let clothesItemViewModel = ClothesItemViewModel(
                     selectedOccasion: viewModel.selectedOccasion,
-                    selectedClothesTypes: viewModel.selectedClothesTypes
+                    selectedClothesTypes: viewModel.selectedClothesTypes, modelContext: modelContext
                 )
                 ClothesItemView(viewModel: clothesItemViewModel)
             }) {

@@ -51,9 +51,9 @@ struct ButtonData {
 }
 
 let buttonData: [ButtonData] = [
-    ButtonData(icon: "bag", title: "Work"),
-    ButtonData(icon: "person.2", title: "Hangout"),
-    ButtonData(icon: "basketball", title: "Exercise"),
+    ButtonData(icon: "bag", title: "Formal"),
+    ButtonData(icon: "person.2", title: "Casual"),
+    ButtonData(icon: "basketball", title: "Sports Wear"),
     ButtonData(icon: "capsule", title: "Streetwear"),
     ButtonData(icon: "questionmark", title: "Other"),
 ]

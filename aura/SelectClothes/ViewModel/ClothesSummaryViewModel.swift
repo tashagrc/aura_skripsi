@@ -9,9 +9,9 @@ import SwiftUI
 
 class ClothesSummaryViewModel: ObservableObject {
     @Published var occasion: String
-    @Published var selectedClothes: [String]
+    @Published var selectedClothes: [ClothesModel]
     
-    init(occasion: String, selectedClothes: [String]) {
+    init(occasion: String, selectedClothes: [ClothesModel]) {
         self.occasion = occasion
         self.selectedClothes = selectedClothes
     }
