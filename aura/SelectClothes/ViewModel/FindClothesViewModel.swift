@@ -27,24 +27,28 @@ class FindClothesViewModel: ObservableObject {
                     if !self.cardData[index].status { // Ensure it hasn't already been marked as found
                         self.cardData[index].status = true
                         self.foundTags.insert(scannedTag)
-                    }
-                    
-                    // Stop scanning if all clothes are found
-                    if self.foundTags.count == self.cardData.count {
-                        print("All clothes found!")
-                    } else {
-                        self.startScanning() // Continue scanning if not all clothes are found
+                        print("✅ Found: \(scannedTag)")
+                        
+                        // Stop scanning if all clothes are found
+                        if self.foundTags.count == self.cardData.count {
+                            print("✅ All clothes found! Stopping NFC session.")
+                            NFCManager.shared.invalidateSession()  // Stop NFC scanning
+                            return // Exit to prevent unnecessary restarts
+                        }
                     }
                 } else {
                     // Show toast message for an invalid tag
-                    self.errorMessage = "This tag doesn't match any selected clothes. Try again."
+                    self.errorMessage = "❌ This tag doesn't match any selected clothes. Try again."
                     
-                    // Hide the toast after 2 seconds
+                    // Hide the toast after 2 seconds and restart scanning if needed
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         self.errorMessage = nil
+                        
+                        if self.foundTags.count < self.cardData.count {
+                            print("🔄 Restarting scan...")
+                            self.startScanning()
+                        }
                     }
-                    
-                    self.startScanning() // Keep scanning for valid tags
                 }
             }
         }
