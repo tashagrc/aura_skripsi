@@ -26,7 +26,7 @@ struct ClothesItemView: View {
                 VStack(spacing: 16) {
                     ForEach(viewModel.filteredClothes, id: \.id) { clothes in
                         NavigationLink(destination: nextView(for: clothes)) {
-                            ClothesCardViewComponent(title: clothes.type, description: clothes.desc, image: nil)
+                            ClothesCardViewComponent(title: clothes.desc, description: clothes.occasion + ", " + clothes.category + ", " + clothes.color + ", " + clothes.pattern, image: nil)
                                 .frame(maxWidth: .infinity)
                         }
                     }
