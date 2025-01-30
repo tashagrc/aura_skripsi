@@ -22,7 +22,7 @@ class NFCManager: NSObject, NFCNDEFReaderSessionDelegate {
         }
         
         self.onTagDetected = onTagDetected
-        nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
+        nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false) // Allow multiple scans
         nfcSession?.alertMessage = "Hold your phone near the Aura tag to scan."
         nfcSession?.begin()
     }
@@ -39,12 +39,22 @@ class NFCManager: NSObject, NFCNDEFReaderSessionDelegate {
         DispatchQueue.main.async {
             self.onTagDetected?(rfidText)
         }
-        session.invalidate()
     }
     
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
         print("NFC Session Invalidated: \(error.localizedDescription)")
+        
+        // Restart scanning automatically if it was not a user cancellation
+        if let nsError = error as? NSError, nsError.code != 200 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.startScanning(onTagDetected: self.onTagDetected ?? { _ in })
+            }
+        }
+    }
+    
+    func invalidateSession() {
+        nfcSession?.invalidate()
+        nfcSession = nil
     }
 }
-
 

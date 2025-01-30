@@ -30,6 +30,7 @@ struct ClothesListView: View {
                     .font(.body)
                     .foregroundColor(.gray)
                     .padding(.top, 16)
+                Spacer()
             } else {
                 List {
                     ForEach(viewModel.clothes, id: \.id) { clothes in

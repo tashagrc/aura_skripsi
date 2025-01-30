@@ -21,15 +21,24 @@ class RegisterRFIDTagViewModel: ObservableObject {
     func startTagDetection() {
         NFCManager.shared.startScanning { [weak self] scannedText in
             guard let self = self else { return }
-            
+
             if self.validateRFID(scannedText) {
                 DispatchQueue.main.async {
                     self.isFound = true
                     self.saveClothesModel(scannedText)
+                    NFCManager.shared.invalidateSession() // Stop scanning once a valid tag is found
+                }
+            } else {
+                // Restart scanning if the tag is invalid
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    if !self.isFound { // Only restart if the correct tag hasn't been found yet
+                        self.startTagDetection()
+                    }
                 }
             }
         }
     }
+
     
     private func validateRFID(_ rfidText: String) -> Bool {
         guard rfidText.contains("AURA") else {

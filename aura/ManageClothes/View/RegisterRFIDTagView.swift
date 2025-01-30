@@ -41,6 +41,9 @@ struct RegisterRFIDTagView: View {
                 viewModel.modelContext = modelContext
                 viewModel.startTagDetection()
             }
+            .onDisappear {
+                NFCManager.shared.invalidateSession()
+            }
             
             // Toast message overlay
             if let errorMessage = viewModel.errorMessage {
@@ -60,6 +63,7 @@ struct RegisterRFIDTagView: View {
                         viewModel.errorMessage = nil
                     }
                 }
+                
             }
         }
     }
