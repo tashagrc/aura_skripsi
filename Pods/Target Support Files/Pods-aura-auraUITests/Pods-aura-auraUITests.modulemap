@@ -1,0 +1,6 @@
+framework module Pods_aura_auraUITests {
+  umbrella header "Pods-aura-auraUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

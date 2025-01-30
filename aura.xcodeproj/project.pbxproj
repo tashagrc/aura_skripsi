@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		36269E73ADD38D2943EFFE2F /* Pods_auraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D01331091971C7E787EB0668 /* Pods_auraTests.framework */; };
+		3CE7FD7CA3AC4023171293AB /* Pods_aura_auraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5B3CF980EAB300300B901F /* Pods_aura_auraUITests.framework */; };
+		D7FE1CFB6B85AF49B269CE03 /* Pods_aura.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01A1F9B983AFE435F087A94 /* Pods_aura.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A351E6DF2D39FD4900F3B124 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,9 +30,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BC4EB2CB38CFB4FFD0F9D61 /* Pods-auraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-auraTests.debug.xcconfig"; path = "Target Support Files/Pods-auraTests/Pods-auraTests.debug.xcconfig"; sourceTree = "<group>"; };
+		327B0B924DB7836D033224DA /* Pods-aura-auraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aura-auraUITests.release.xcconfig"; path = "Target Support Files/Pods-aura-auraUITests/Pods-aura-auraUITests.release.xcconfig"; sourceTree = "<group>"; };
+		732082E518FCEF176A1499A3 /* Pods-aura.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aura.debug.xcconfig"; path = "Target Support Files/Pods-aura/Pods-aura.debug.xcconfig"; sourceTree = "<group>"; };
+		9A2733C7D113C98A6AF18D16 /* Pods-aura-auraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aura-auraUITests.debug.xcconfig"; path = "Target Support Files/Pods-aura-auraUITests/Pods-aura-auraUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A351E6CE2D39FD4800F3B124 /* aura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A351E6DE2D39FD4900F3B124 /* auraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = auraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A351E6E82D39FD4900F3B124 /* auraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = auraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C01A1F9B983AFE435F087A94 /* Pods_aura.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aura.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C514E26EEA16DF6D773ECF3E /* Pods-auraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-auraTests.release.xcconfig"; path = "Target Support Files/Pods-auraTests/Pods-auraTests.release.xcconfig"; sourceTree = "<group>"; };
+		CB88DBC2F51BA4294FF141C8 /* Pods-aura.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aura.release.xcconfig"; path = "Target Support Files/Pods-aura/Pods-aura.release.xcconfig"; sourceTree = "<group>"; };
+		D01331091971C7E787EB0668 /* Pods_auraTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_auraTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD5B3CF980EAB300300B901F /* Pods_aura_auraUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aura_auraUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -65,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7FE1CFB6B85AF49B269CE03 /* Pods_aura.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36269E73ADD38D2943EFFE2F /* Pods_auraTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,12 +96,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CE7FD7CA3AC4023171293AB /* Pods_aura_auraUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21E058BF26A437DD9AB9F7AD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				732082E518FCEF176A1499A3 /* Pods-aura.debug.xcconfig */,
+				CB88DBC2F51BA4294FF141C8 /* Pods-aura.release.xcconfig */,
+				9A2733C7D113C98A6AF18D16 /* Pods-aura-auraUITests.debug.xcconfig */,
+				327B0B924DB7836D033224DA /* Pods-aura-auraUITests.release.xcconfig */,
+				0BC4EB2CB38CFB4FFD0F9D61 /* Pods-auraTests.debug.xcconfig */,
+				C514E26EEA16DF6D773ECF3E /* Pods-auraTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		54E4B481041A4D6071B23991 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C01A1F9B983AFE435F087A94 /* Pods_aura.framework */,
+				FD5B3CF980EAB300300B901F /* Pods_aura_auraUITests.framework */,
+				D01331091971C7E787EB0668 /* Pods_auraTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A351E6C52D39FD4800F3B124 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +133,8 @@
 				A351E6E12D39FD4900F3B124 /* auraTests */,
 				A351E6EB2D39FD4900F3B124 /* auraUITests */,
 				A351E6CF2D39FD4800F3B124 /* Products */,
+				21E058BF26A437DD9AB9F7AD /* Pods */,
+				54E4B481041A4D6071B23991 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A351E6F22D39FD4900F3B124 /* Build configuration list for PBXNativeTarget "aura" */;
 			buildPhases = (
+				2EB6E3B12FF7EB567F92144E /* [CP] Check Pods Manifest.lock */,
 				A351E6CA2D39FD4800F3B124 /* Sources */,
 				A351E6CB2D39FD4800F3B124 /* Frameworks */,
 				A351E6CC2D39FD4800F3B124 /* Resources */,
+				1DD96DC0116CE0A3759E29E5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,8 +169,6 @@
 				A351E6D02D39FD4800F3B124 /* aura */,
 			);
 			name = aura;
-			packageProductDependencies = (
-			);
 			productName = aura;
 			productReference = A351E6CE2D39FD4800F3B124 /* aura.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +177,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A351E6F52D39FD4900F3B124 /* Build configuration list for PBXNativeTarget "auraTests" */;
 			buildPhases = (
+				4740988CCC680656CFF46BAD /* [CP] Check Pods Manifest.lock */,
 				A351E6DA2D39FD4900F3B124 /* Sources */,
 				A351E6DB2D39FD4900F3B124 /* Frameworks */,
 				A351E6DC2D39FD4900F3B124 /* Resources */,
@@ -147,8 +191,6 @@
 				A351E6E12D39FD4900F3B124 /* auraTests */,
 			);
 			name = auraTests;
-			packageProductDependencies = (
-			);
 			productName = auraTests;
 			productReference = A351E6DE2D39FD4900F3B124 /* auraTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,9 +199,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A351E6F82D39FD4900F3B124 /* Build configuration list for PBXNativeTarget "auraUITests" */;
 			buildPhases = (
+				317995A449870EF559F29700 /* [CP] Check Pods Manifest.lock */,
 				A351E6E42D39FD4900F3B124 /* Sources */,
 				A351E6E52D39FD4900F3B124 /* Frameworks */,
 				A351E6E62D39FD4900F3B124 /* Resources */,
+				91F1CC5A4D93800DD983045E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,8 +214,6 @@
 				A351E6EB2D39FD4900F3B124 /* auraUITests */,
 			);
 			name = auraUITests;
-			packageProductDependencies = (
-			);
 			productName = auraUITests;
 			productReference = A351E6E82D39FD4900F3B124 /* auraUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -243,6 +285,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1DD96DC0116CE0A3759E29E5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-aura/Pods-aura-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-aura/Pods-aura-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-aura/Pods-aura-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2EB6E3B12FF7EB567F92144E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-aura-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		317995A449870EF559F29700 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-aura-auraUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4740988CCC680656CFF46BAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-auraTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91F1CC5A4D93800DD983045E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-aura-auraUITests/Pods-aura-auraUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-aura-auraUITests/Pods-aura-auraUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-aura-auraUITests/Pods-aura-auraUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A351E6CA2D39FD4800F3B124 /* Sources */ = {
@@ -319,7 +464,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -382,7 +527,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -403,6 +548,7 @@
 		};
 		A351E6F32D39FD4900F3B124 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 732082E518FCEF176A1499A3 /* Pods-aura.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -441,6 +587,7 @@
 		};
 		A351E6F42D39FD4900F3B124 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB88DBC2F51BA4294FF141C8 /* Pods-aura.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -479,6 +626,7 @@
 		};
 		A351E6F62D39FD4900F3B124 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0BC4EB2CB38CFB4FFD0F9D61 /* Pods-auraTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -498,6 +646,7 @@
 		};
 		A351E6F72D39FD4900F3B124 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C514E26EEA16DF6D773ECF3E /* Pods-auraTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -517,6 +666,7 @@
 		};
 		A351E6F92D39FD4900F3B124 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A2733C7D113C98A6AF18D16 /* Pods-aura-auraUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -534,6 +684,7 @@
 		};
 		A351E6FA2D39FD4900F3B124 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 327B0B924DB7836D033224DA /* Pods-aura-auraUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
