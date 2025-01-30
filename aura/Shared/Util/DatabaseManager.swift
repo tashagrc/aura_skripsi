@@ -44,6 +44,17 @@ class DatabaseManager {
             print("Delete failed with error: \(error)")
         }
     }
+    
+    func getAllRFIDs(using modelContext: ModelContext) -> [String] {
+        do {
+            let descriptor = FetchDescriptor<ClothesModel>()
+            let clothes = try modelContext.fetch(descriptor)
+            return clothes.compactMap { $0.rfid_id } // Extracting only RFID IDs
+        } catch {
+            print("Failed to fetch RFID IDs: \(error)")
+            return []
+        }
+    }
 }
 
 
