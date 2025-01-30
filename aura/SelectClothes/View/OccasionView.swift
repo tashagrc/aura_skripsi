@@ -19,6 +19,7 @@ struct OccasionView: View {
                     .fontWeight(.bold)
                     .padding(.top, 40)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityLabel("Where do you want to go?")  // Accessibility label for the title text
                 
                 VStack(spacing: 16) {
                     ForEach(buttonData, id: \.title) { button in
@@ -32,8 +33,9 @@ struct OccasionView: View {
                                         occasionViewModel.selectedOccasion = button.title
                                     }
                                 )
+                                .accessibilityLabel("\(button.title) button")  // Add an accessibility label for each button
+                                .accessibilityHint("Tap to select \(button.title) as your occasion.") // Explain the action
                         }
-                        
                     }
                 }
                 
@@ -42,8 +44,10 @@ struct OccasionView: View {
             .padding(.horizontal, 16)
         }
         .navigationBarBackButtonHidden(true)
+        
     }
 }
+
 
 struct ButtonData {
     let icon: String

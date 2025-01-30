@@ -28,7 +28,11 @@ struct ButtonViewComponent: View {
                 color: isPrimary ? Color.blue.opacity(0.2) : Color.clear,
                 radius: 4, x: 0, y: 2
             )
+            .accessibilityLabel(title)  // Accessibility label for the button text
+            .accessibilityHint("Tap to \(isPrimary ? "confirm" : "select") your action.") // Hint for the action
+            .accessibilityAddTraits(.isButton) // Specifies that this is a button for accessibility
     }
 }
+
 
 

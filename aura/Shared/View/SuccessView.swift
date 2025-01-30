@@ -14,7 +14,6 @@ struct SuccessView: View {
     var returnTab: Int
     
     var body: some View {
-
         VStack(spacing: 32) {
             Image(systemName: iconName)
                 .resizable()
@@ -22,18 +21,22 @@ struct SuccessView: View {
                 .frame(width: 80, height: 80)
                 .foregroundColor(.blue)
                 .padding(.top, 40)
+                .accessibilityLabel(title) // Reads out the title instead of just "icon"
+                .accessibilityAddTraits(.isImage)
             
-            Text(title)
-                .font(.title)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            Text(subtitle)
-                .font(.body)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            VStack(alignment: .leading, spacing: 8) {
+                Text(title)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.leading)
+                
+                Text(subtitle)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(title). \(subtitle)")
             
             Spacer()
             
@@ -42,14 +45,10 @@ struct SuccessView: View {
             ) {
                 ButtonViewComponent(title: "Done", isPrimary: true)
             }
-            
-            
-        
+            .accessibilityHint("Returns to the main menu")
         }
         .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
-
-        
     }
-        
 }
+

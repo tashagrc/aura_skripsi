@@ -22,6 +22,7 @@ struct ClothesTypeView: View {
                 .fontWeight(.bold)
                 .padding(.top, 40)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .accessibilityLabel("What do you want to wear?")  // Label for the question
             
             VStack(alignment: .leading, spacing: 16) {
                 ForEach(0..<viewModel.clothesTypeOptions.count, id: \.self) { index in
@@ -34,9 +35,10 @@ struct ClothesTypeView: View {
                                 viewModel.selectedClothesTypes.removeAll { $0 == type }
                             }
                         }
+                        .accessibilityLabel(viewModel.clothesTypeOptions[index])  // Label for the checkbox option
+                        .accessibilityHint("Tap to select or deselect \(viewModel.clothesTypeOptions[index])")  // Hint for checkbox action
                 }
             }
-            
             
             Spacer()
             
@@ -48,12 +50,14 @@ struct ClothesTypeView: View {
                 ClothesItemView(viewModel: clothesItemViewModel)
             }) {
                 ButtonViewComponent(title: "Continue", isPrimary: true)
+                    .accessibilityLabel("Continue")  // Label for the Continue button
+                    .accessibilityHint("Tap to proceed to select clothes based on your chosen types.")  // Hint for button action
             }
         }
         .padding(.horizontal, 16)
     }
-        
 }
+
 
 
 

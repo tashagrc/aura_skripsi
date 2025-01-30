@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct FindClothesView: View {
     @StateObject private var viewModel: FindClothesViewModel
@@ -23,11 +24,14 @@ struct FindClothesView: View {
                         .scaledToFit()
                         .frame(width: 80, height: 80)
                         .foregroundColor(.primary)
+                        .accessibilityLabel("Aura tag icon")  // Label for the icon
+                        .accessibilityHidden(true)  // Hides from VoiceOver as it's decorative
                     
                     Text("Scan each Aura Tag on your clothes with your phone until you hear a beep")
                         .font(.body)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.leading)
+                        .accessibilityLabel("Scan each Aura Tag on your clothes with your phone until you hear a beep.") // Clear description of what users should do
                 }
                 .padding(.top, 40)
                 
@@ -38,6 +42,7 @@ struct FindClothesView: View {
                                 itemName: viewModel.cardData[index].title,
                                 status: viewModel.cardData[index].status
                             )
+                            .accessibilityLabel("Item: \(viewModel.cardData[index].title), Status: \(viewModel.cardData[index].status)") // Descriptive label for each item
                         }
                     }
                     .padding(.top, 16)
@@ -46,6 +51,8 @@ struct FindClothesView: View {
                 
                 NavigationLink(destination: SuccessView(iconName: "checkmark.circle", title: "Amazing choice!", subtitle: "Pick up all of your selected clothes", returnTab: 0)) {
                     ButtonViewComponent(title: "Continue", isPrimary: true)
+                        .accessibilityLabel("Continue to the next step")  // Label for the continue button
+                        .accessibilityHint("Tap to proceed to the success screen")  // Hint to clarify button action
                 }
             }
             .padding(.horizontal, 16)
@@ -67,15 +74,27 @@ struct FindClothesView: View {
                         .padding(.bottom, 50)
                         .transition(.opacity)
                         .animation(.easeInOut, value: viewModel.errorMessage)
+                        .accessibilityLabel("Error: \(errorMessage)")  // Add label for error message
+                        .accessibilityHint("An error occurred during the scanning process.")  // Add hint for screen readers
                     Spacer()
                 }
                 .onAppear {
+                    // Play a warning sound when an error occurs
+                    AudioServicesPlaySystemSound(1322) // Warning sound
+
+                    // Announce the error message using VoiceOver
+                    UIAccessibility.post(notification: .announcement, argument: errorMessage)
+
+                    // Hide error message after 2 seconds
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        viewModel.errorMessage = nil
+                        withAnimation {
+                            viewModel.errorMessage = nil
+                        }
                     }
                 }
             }
         }
-        
     }
 }
+
+

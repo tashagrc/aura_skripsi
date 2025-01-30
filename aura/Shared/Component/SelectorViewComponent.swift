@@ -19,6 +19,8 @@ struct SelectorViewComponent: View {
                 .frame(width: 40, height: 40)
                 .background(Color.blue.opacity(0.2))
                 .cornerRadius(8)
+                .accessibilityHidden(true) // Hides icon from VoiceOver since it will be included in the label
+            
             Text(title)
                 .font(.title3)
                 .fontWeight(.semibold)
@@ -36,7 +38,10 @@ struct SelectorViewComponent: View {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.blue.opacity(0.4), lineWidth: 1)
         )
-        .contentShape(Rectangle())
+        .contentShape(Rectangle()) // Ensures tappable area is the full rectangle
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(title), selectable option")
+        .accessibilityHint("Double-tap to select this option")
     }
-
 }
+

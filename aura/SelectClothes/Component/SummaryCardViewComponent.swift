@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SummaryCardViewComponent: View {
-    
     var iconName: String
     var text: String
     
@@ -17,9 +16,10 @@ struct SummaryCardViewComponent: View {
             Image(systemName: iconName)
                 .font(.title)
                 .foregroundColor(.blue)
-                .frame(width: 50, height: 50)
+                .frame(minWidth: 50, minHeight: 50)
                 .background(Color.blue.opacity(0.15))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
+                .accessibilityHidden(true)
             
             Text(text)
                 .font(.body)
@@ -30,13 +30,16 @@ struct SummaryCardViewComponent: View {
         .padding(12)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
+                .fill(Color(.systemBackground)) // Adjusts for dark mode
                 .shadow(color: Color.black.opacity(0.05), radius: 4, x: 0, y: 2)
         )
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color.gray.opacity(0.3), lineWidth: 1)
         )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(text)
     }
 }
+
 

@@ -16,9 +16,12 @@ struct ClothesItemView: View {
                 Text("Select a clothing item")
                     .font(.title)
                     .fontWeight(.bold)
-                Text("Showing \(viewModel.filteredClothes.count) options for \(viewModel.selectedClothesTypes.filter { category in !viewModel.selectedClothes.contains { $0.category == category } }.joined(separator: ", "))")
+                    .accessibilityLabel("Select a clothing item")
+                
+                Text("Showing \(viewModel.filteredClothes.count) options for \(viewModel.selectedOccasion): \(viewModel.selectedClothesTypes.joined(separator: ", "))")
                     .font(.title3)
                     .foregroundColor(.secondary)
+                    
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -26,8 +29,14 @@ struct ClothesItemView: View {
                 VStack(spacing: 16) {
                     ForEach(viewModel.filteredClothes, id: \.id) { clothes in
                         NavigationLink(destination: nextView(for: clothes)) {
-                            ClothesCardViewComponent(title: clothes.desc, description: clothes.occasion + ", " + clothes.category + ", " + clothes.color + ", " + clothes.pattern, image: ClothesItemViewModel.loadImageFromDocuments(imagePath: clothes.imagePath))
-                                .frame(maxWidth: .infinity)
+                            ClothesCardViewComponent(
+                                title: clothes.desc,
+                                description: clothes.occasion + ", " + clothes.category + ", " + clothes.color + ", " + clothes.pattern,
+                                image: ClothesItemViewModel.loadImageFromDocuments(imagePath: clothes.imagePath)
+                            )
+                            .frame(maxWidth: .infinity)
+                            .accessibilityLabel("\(clothes.desc), \(clothes.occasion), \(clothes.category), \(clothes.color), \(clothes.pattern)")
+                            .accessibilityHint("Tap to view details for \(clothes.desc)")
                         }
                     }
                 }

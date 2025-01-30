@@ -13,7 +13,6 @@ struct ClothesDetailView: View {
     
     var body: some View {
         VStack(spacing: 24) {
-            
             if let image = viewModel.image {
                 Image(uiImage: image)
                     .resizable()
@@ -21,6 +20,7 @@ struct ClothesDetailView: View {
                     .frame(maxWidth: .infinity, maxHeight: 300)
                     .cornerRadius(12)
                     .shadow(radius: 4)
+                    .accessibilityHidden(true) // Decorative image
             } else {
                 Image(systemName: "photo")
                     .resizable()
@@ -30,6 +30,7 @@ struct ClothesDetailView: View {
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(12)
                     .shadow(radius: 4)
+                    .accessibilityHidden(true) // Decorative placeholder
             }
             
             HStack {
@@ -44,8 +45,8 @@ struct ClothesDetailView: View {
                             if viewModel.mode == .view {
                                 viewModel.saveChangesIfNeeded()
                             }
-                            
                         }
+                        .accessibilityLabel("Title input field")
                 } else {
                     Text(viewModel.title)
                         .font(.title)
@@ -53,6 +54,7 @@ struct ClothesDetailView: View {
                         .onTapGesture {
                             viewModel.isEditing = true
                         }
+                        .accessibilityAddTraits(.isHeader)
                 }
                 
                 Button(action: {
@@ -66,6 +68,7 @@ struct ClothesDetailView: View {
                         .foregroundColor(.blue)
                 }
                 .buttonStyle(.borderless)
+                .accessibilityLabel(viewModel.isEditing ? "Save title" : "Edit title")
             }
             .padding()
             .background(viewModel.isEditing ? Color(.systemGray6) : Color.clear)
@@ -77,6 +80,7 @@ struct ClothesDetailView: View {
                     Text(key)
                         .font(.headline)
                         .fontWeight(.semibold)
+                        .accessibilityLabel("\(key) label")
                     
                     if let pickerData = viewModel.pickerData[key] {
                         Picker(key, selection: binding) {
@@ -91,6 +95,7 @@ struct ClothesDetailView: View {
                                 viewModel.saveChangesIfNeeded()
                             }
                         }
+                        .accessibilityLabel("\(key) selection")
                     } else {
                         TextField("Enter \(key)", text: binding)
                             .textFieldStyle(.roundedBorder)
@@ -100,6 +105,7 @@ struct ClothesDetailView: View {
                                     viewModel.saveChangesIfNeeded()
                                 }
                             }
+                            .accessibilityLabel("\(key) input field")
                     }
                 }
             }
@@ -115,8 +121,8 @@ struct ClothesDetailView: View {
                 ) {
                     ButtonViewComponent(title: "Continue", isPrimary: true)
                 }
+                .accessibilityLabel("Continue to RFID registration")
             }
-            
         }
         .padding(.horizontal, 16)
         .onAppear() {
@@ -125,4 +131,3 @@ struct ClothesDetailView: View {
         }
     }
 }
-

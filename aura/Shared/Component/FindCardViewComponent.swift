@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct FindCardViewComponent: View {
     var itemName: String
@@ -18,6 +19,7 @@ struct FindCardViewComponent: View {
                 .foregroundColor(.primary)
                 .lineLimit(2)
                 .frame(maxWidth: .infinity, alignment: .leading)
+            
             Text(status ? "Found" : "Not Found")
                 .font(.subheadline)
                 .fontWeight(.semibold)
@@ -37,6 +39,19 @@ struct FindCardViewComponent: View {
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color.gray.opacity(0.4), lineWidth: 1)
         )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(itemName), \(status ? "Found" : "Not Found")")
+        .accessibilityHint("Indicates whether the item has been scanned")
+        .onChange(of: status) { newValue in
+            if newValue {
+                // Play a success sound
+                AudioServicesPlaySystemSound(1104) // "Tock" system sound
+                // Announce using VoiceOver
+                UIAccessibility.post(notification: .announcement, argument: "\(itemName) found")
+            }
+        }
     }
 }
+
+
 

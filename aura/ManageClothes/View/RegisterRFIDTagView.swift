@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct RegisterRFIDTagView: View {
     @ObservedObject var viewModel: RegisterRFIDTagViewModel
@@ -16,24 +17,36 @@ struct RegisterRFIDTagView: View {
             VStack(spacing: 24) {
                 Text("Set up your Aura tag")
                     .font(.title)
-                    .multilineTextAlignment(.leading)
                     .fontWeight(.bold)
+                    .multilineTextAlignment(.leading)
                     .padding(.top, 40)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("Place the Aura tag on the back of your phone until you hear a beep. Ensure NFC is enabled in your phone settings.")
+                    .accessibilityAddTraits(.isHeader)
+
+                Text("Place the Aura tag on the back of your phone until you hear a beep. Make sure NFC is enabled in settings.")
                     .font(.body)
                     .multilineTextAlignment(.leading)
-                    .padding(.top, 16)
-                
+                    .padding(.top, 8)
+
                 Spacer().frame(height: 24)
-                
+
                 FindCardViewComponent(itemName: "Aura Tag", status: viewModel.isFound)
+
                 Spacer()
-                
+
                 if viewModel.isFound {
-                    NavigationLink(destination: SuccessView(iconName: "paperclip", title: "Attach the registered Aura tag to the clothes you took photos of earlier", subtitle: "Use sewing, adhesive, or a clip to securely attach the tag.", returnTab: 1)) {
+                    NavigationLink(
+                        destination: SuccessView(
+                            iconName: "paperclip",
+                            title: "Attach the registered Aura tag",
+                            subtitle: "Secure the tag using sewing, adhesive, or a clip.",
+                            returnTab: 1
+                        )
+                    ) {
                         ButtonViewComponent(title: "Continue", isPrimary: true)
                     }
+                    .transition(.opacity)
+                    .animation(.easeInOut, value: viewModel.isFound)
                 }
             }
             .padding(.horizontal, 16)
@@ -44,10 +57,11 @@ struct RegisterRFIDTagView: View {
             .onDisappear {
                 NFCManager.shared.invalidateSession()
             }
-            
-            // Toast message overlay
+
+            // Error message toast
             if let errorMessage = viewModel.errorMessage {
                 VStack {
+                    Spacer()
                     Text(errorMessage)
                         .foregroundColor(.white)
                         .padding()
@@ -56,15 +70,23 @@ struct RegisterRFIDTagView: View {
                         .padding(.bottom, 50)
                         .transition(.opacity)
                         .animation(.easeInOut, value: viewModel.errorMessage)
-                    Spacer()
                 }
                 .onAppear {
+                    // Play warning sound
+                    AudioServicesPlaySystemSound(1322) // System warning sound
+
+                    // Announce the error message via VoiceOver
+                    UIAccessibility.post(notification: .announcement, argument: errorMessage)
+
+                    // Hide error message after 2 seconds
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        viewModel.errorMessage = nil
+                        withAnimation {
+                            viewModel.errorMessage = nil
+                        }
                     }
                 }
-                
             }
         }
     }
 }
+

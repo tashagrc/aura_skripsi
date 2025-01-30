@@ -24,12 +24,14 @@ struct ClothesListView: View {
                 .fontWeight(.bold)
                 .padding(.top, 40)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .accessibilityAddTraits(.isHeader) // Marked as a header
             
             if viewModel.clothes.isEmpty {
                 Text("No clothes found.")
                     .font(.body)
                     .foregroundColor(.gray)
                     .padding(.top, 16)
+                    .accessibilityLabel("No clothes available") // More descriptive for screen readers
                 Spacer()
             } else {
                 List {
@@ -44,14 +46,21 @@ struct ClothesListView: View {
                         ) {
                             ClothesCardViewComponent(
                                 title: clothes.desc,
-                                description: clothes.occasion + ", " + clothes.category + ", " + clothes.color + ", " + clothes.pattern,
+                                description: "\(clothes.occasion), \(clothes.category), \(clothes.color), \(clothes.pattern)",
                                 image: ClothesListViewModel.loadImageFromDocuments(imagePath: clothes.imagePath)
                             )
+                            .accessibilityElement(children: .combine) // Combine elements in the card for better readability
+                            .accessibilityLabel("\(clothes.desc), \(clothes.occasion), \(clothes.category), \(clothes.color), \(clothes.pattern)") // Better screen reader description
                         }
                     }
                     .onDelete { indexes in
                         for index in indexes {
                             viewModel.deleteClothes(clothes: viewModel.clothes[index], using: modelContext)
+                        }
+                    }
+                    .accessibilityAction(named: "Delete") {
+                        if let first = viewModel.clothes.first {
+                            viewModel.deleteClothes(clothes: first, using: modelContext)
                         }
                     }
                 }
@@ -63,5 +72,5 @@ struct ClothesListView: View {
             viewModel.fetchData(using: modelContext)
         }
     }
-    
 }
+

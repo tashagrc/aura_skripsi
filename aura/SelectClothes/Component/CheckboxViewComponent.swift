@@ -13,11 +13,14 @@ struct CheckboxViewComponent: View {
     
     var body: some View {
         Button(action: {
-            isChecked.toggle()
+            withAnimation(.easeInOut(duration: 0.2)) {
+                isChecked.toggle()
+            }
         }) {
             HStack {
                 Image(systemName: isChecked ? "checkmark.square.fill" : "square")
                     .foregroundColor(isChecked ? .blue : .gray)
+                
                 Text(label)
                     .font(.body)
             }
@@ -27,5 +30,11 @@ struct CheckboxViewComponent: View {
             .cornerRadius(8)
         }
         .buttonStyle(PlainButtonStyle())
+        .contentShape(Rectangle()) // Expands tap area
+        .accessibilityElement()
+        .accessibilityLabel(label)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityValue(isChecked ? "Checked" : "Unchecked")
     }
 }
+
