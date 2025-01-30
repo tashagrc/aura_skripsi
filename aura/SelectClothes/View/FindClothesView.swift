@@ -52,6 +52,9 @@ struct FindClothesView: View {
             .onAppear {
                 viewModel.startScanning() // Start scanning when the view appears
             }
+            .onDisappear {
+                NFCManager.shared.invalidateSession()
+            }
             
             // Toast message overlay for errors
             if let errorMessage = viewModel.errorMessage {
@@ -73,5 +76,6 @@ struct FindClothesView: View {
                 }
             }
         }
+        
     }
 }

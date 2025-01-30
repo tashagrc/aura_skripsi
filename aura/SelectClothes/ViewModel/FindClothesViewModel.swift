@@ -6,18 +6,16 @@
 //
 
 import SwiftUI
-
-import SwiftUI
 import CoreNFC
 
 class FindClothesViewModel: ObservableObject {
-    @Published var cardData: [(title: String, status: Bool)]
+    @Published var cardData: [(rfid_id: String, title: String, status: Bool)]
     @Published var errorMessage: String?  // For toast messages
     
     private var foundTags: Set<String> = []  // Track found tags
     
     init(selectedClothes: [ClothesModel]) {
-        self.cardData = selectedClothes.map { (title: $0.desc, status: false) }
+        self.cardData = selectedClothes.map { (rfid_id: $0.rfid_id, title: $0.desc, status: false) }
     }
     
     func startScanning() {
@@ -25,7 +23,7 @@ class FindClothesViewModel: ObservableObject {
             guard let self = self else { return }
             
             DispatchQueue.main.async {
-                if let index = self.cardData.firstIndex(where: { $0.title == scannedTag }) {
+                if let index = self.cardData.firstIndex(where: { $0.rfid_id == scannedTag }) {
                     if !self.cardData[index].status { // Ensure it hasn't already been marked as found
                         self.cardData[index].status = true
                         self.foundTags.insert(scannedTag)
