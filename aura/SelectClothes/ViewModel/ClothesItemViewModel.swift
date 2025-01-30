@@ -56,4 +56,8 @@ class ClothesItemViewModel: ObservableObject {
     var isSelectionComplete: Bool {
         return selectedClothes.count == selectedClothesTypes.count
     }
+    
+    static func loadImageFromDocuments(imagePath: String) -> UIImage? {
+        return DocumentManager.loadImageFromDocuments(imagePath: imagePath)
+    }
 }

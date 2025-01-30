@@ -15,4 +15,8 @@ class ClothesSummaryViewModel: ObservableObject {
         self.occasion = occasion
         self.selectedClothes = selectedClothes
     }
+    
+    static func loadImageFromDocuments(imagePath: String) -> UIImage? {
+        return DocumentManager.loadImageFromDocuments(imagePath: imagePath)
+    }
 }

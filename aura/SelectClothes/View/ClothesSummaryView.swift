@@ -37,7 +37,7 @@ struct ClothesSummaryView: View {
                     ForEach(viewModel.selectedClothes, id: \.self) { clothes in
                         ClothesCardViewComponent(
                             title: clothes.desc,
-                            description: clothes.occasion + ", " + clothes.category + ", " + clothes.color + ", " + clothes.pattern
+                            description: clothes.occasion + ", " + clothes.category + ", " + clothes.color + ", " + clothes.pattern, image: ClothesSummaryViewModel.loadImageFromDocuments(imagePath: clothes.imagePath)
                         )
                         .frame(maxWidth: .infinity)
                     }
