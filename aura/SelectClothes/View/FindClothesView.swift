@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct FindClothesView: View {
-    var cardData = [
-        (title: "Card 1", status: true),
-        (title: "Card 2", status: false)
-        
-    ]
+    @StateObject private var viewModel = FindClothesViewModel()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
@@ -34,7 +30,7 @@ struct FindClothesView: View {
             
             ScrollView {
                 VStack(spacing: 16) {
-                    ForEach(cardData, id: \.title) { card in
+                    ForEach(viewModel.cardData, id: \.title) { card in
                         FindCardViewComponent(itemName: card.title, status: card.status)
                     }
                 }
