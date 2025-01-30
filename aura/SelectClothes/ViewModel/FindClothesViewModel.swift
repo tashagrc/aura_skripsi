@@ -8,8 +8,11 @@
 import SwiftUI
 
 class FindClothesViewModel: ObservableObject {
-    @Published var cardData: [(title: String, status: Bool)] = [
-        (title: "Card 1", status: true),
-        (title: "Card 2", status: false)
-    ]
+    @Published var cardData: [(title: String, status: Bool)]
+    
+    init(selectedClothes: [ClothesModel]) {
+        self.cardData = selectedClothes.map {
+            (title: $0.desc, status: false)
+        }
+    }
 }

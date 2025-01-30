@@ -47,7 +47,7 @@ struct ClothesSummaryView: View {
             }
             
             VStack(alignment: .leading, spacing: 16) {
-                NavigationLink(destination: FindClothesView()) {
+                NavigationLink(destination: FindClothesView(selectedClothes: viewModel.selectedClothes)) {
                     ButtonViewComponent(title: "Help me find clothes", isPrimary: true)
                 }
                 

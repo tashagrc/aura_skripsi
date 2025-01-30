@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct FindClothesView: View {
-    @StateObject private var viewModel = FindClothesViewModel()
+    @StateObject private var viewModel: FindClothesViewModel
+    
+    init(selectedClothes: [ClothesModel]) {
+        _viewModel =
+        StateObject(wrappedValue: FindClothesViewModel(selectedClothes: selectedClothes))
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
@@ -46,8 +51,4 @@ struct FindClothesView: View {
         }
         .padding(.horizontal, 16)
     }
-}
-
-#Preview {
-    FindClothesView()
 }
